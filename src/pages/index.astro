@@ -1,0 +1,36 @@
+---
+import "@/styles/global.css";
+import { About } from "@/components/About";
+import { ClientLogos } from "@/components/ClientLogos";
+import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
+import { Hero } from "@/components/Hero";
+import { Navbar } from "@/components/Navbar";
+import { Services } from "@/components/Services";
+import site from "@/content/site.json";
+
+const seo = site.siteConfig.seo;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="generator" content={Astro.generator} />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+  </head>
+  <body>
+    <Navbar client:load />
+    <Hero client:load />
+    <ClientLogos client:load />
+    <About client:load />
+    <Services client:load />
+    <Contact client:load />
+    <Footer client:load />
+  </body>
+</html>

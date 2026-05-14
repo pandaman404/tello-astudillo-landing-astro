@@ -1,0 +1,264 @@
+import { useState } from "react";
+import { z } from "zod";
+import { Phone, Mail, MapPin, MessageCircle, Send } from "lucide-react";
+import site from "@/content/site.json";
+
+const c = site.contactSection;
+const cfg = site.siteConfig;
+const f = c.form;
+
+const schema = z.object({
+  name: z.string().trim().min(2, "Ingrese su nombre").max(100),
+  company: z.string().trim().max(120).optional(),
+  email: z.string().trim().email("Email inválido").max(255),
+  phone: z.string().trim().max(40).optional(),
+  message: z.string().trim().min(10, "Cuéntenos un poco más").max(2000),
+});
+
+const WEB3FORMS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY as string;
+
+export function Contact() {
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    // Honeypot: si el campo oculto tiene valor, es un bot
+    if (form.get("_hp")) return;
+    const data = Object.fromEntries(form.entries());
+    const r = schema.safeParse(data);
+    if (!r.success) {
+      const map: Record<string, string> = {};
+      for (const issue of r.error.issues) {
+        if (issue.path[0]) map[String(issue.path[0])] = issue.message;
+      }
+      setErrors(map);
+      setStatus("error");
+      return;
+    }
+    setErrors({});
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: f.web3formsSubject,
+          from_name: f.web3formsFromName,
+          replyto: r.data.email,
+          ...r.data,
+        }),
+      });
+      const json = await res.json();
+      if (json.success) {
+        setStatus("ok");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  return (
+    <section id="contacto" className="relative overflow-hidden bg-background py-24 sm:py-32">
+      {/* Grid overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-50" />
+
+      {/* Top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+
+          {/* ── Left: info ── */}
+          <div>
+            <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+              <span className="h-px w-10 bg-accent" />
+              {c.eyebrow}
+            </div>
+
+            <h2 className="mt-4 font-heading text-4xl font-bold uppercase leading-[0.93] tracking-tight text-foreground sm:text-5xl">
+              {c.headlineLine1}
+              <br />
+              <span className="text-accent">{c.headlineLine2}</span>
+            </h2>
+
+            <p className="mt-6 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+              {c.body}
+            </p>
+
+            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <ContactRow icon={Phone} label="Teléfono 1" value={cfg.phone1} href={cfg.phone1Href} />
+              <ContactRow icon={Phone} label="Teléfono 2" value={cfg.phone2} href={cfg.phone2Href} />
+              <ContactRow icon={MessageCircle} label={c.whatsappLabel} value={c.whatsappValue} href={cfg.whatsapp} highlight />
+              <ContactRow icon={Mail} label="Correo" value={cfg.email} href={`mailto:${cfg.email}`} />
+              <ContactRow icon={MapPin} label={c.locationLabel} value={cfg.address} href={cfg.addressMapsUrl} />
+            </div>
+          </div>
+
+          {/* ── Right: form ── */}
+          <form
+            onSubmit={onSubmit}
+            className="clip-corner relative border border-border/70 bg-card p-8 shadow-[0_2px_32px_rgba(0,0,0,0.5)] sm:p-10"
+          >
+            {/* Form header eyebrow */}
+            <div className="mb-7 flex items-center gap-3 text-[11px] uppercase tracking-[0.25em]">
+              <span className="font-semibold text-accent">[ {f.eyebrow} ]</span>
+              <span className="h-px flex-1 bg-border/60" />
+              <span className="text-muted-foreground/50">{f.subLabel}</span>
+            </div>
+
+            {/* Honeypot — oculto para humanos, visible para bots */}
+            <input
+              type="text"
+              name="_hp"
+              aria-hidden="true"
+              tabIndex={-1}
+              autoComplete="off"
+              className="absolute left-[-9999px] h-0 w-0 overflow-hidden opacity-0"
+            />
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field name="name" label={f.fields.name.label} error={errors.name} />
+              <Field name="company" label={f.fields.company.label} error={errors.company} />
+              <Field name="email" label={f.fields.email.label} type="email" error={errors.email} />
+              <Field name="phone" label={f.fields.phone.label} error={errors.phone} />
+            </div>
+
+            <div className="mt-5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+                {f.fields.message.label}
+              </label>
+              <textarea
+                name="message"
+                rows={5}
+                maxLength={2000}
+                className="mt-2 w-full resize-none border border-border/70 bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:border-accent focus:outline-none transition-colors"
+                placeholder={f.fields.message.placeholder}
+              />
+              {errors.message && (
+                <p className="mt-1 text-xs text-red-400">{errors.message}</p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="clip-corner mt-8 inline-flex w-full items-center justify-center gap-3 bg-primary px-6 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-blue transition-all hover:brightness-125 disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {status === "sending" ? (
+                <>
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground/30 border-t-primary-foreground" />
+                  {f.sendingBtn}
+                </>
+              ) : (
+                <>
+                  {f.submitBtn}
+                  <Send className="h-4 w-4" />
+                </>
+              )}
+            </button>
+
+            {status === "ok" && (
+              <p className="mt-4 flex items-center gap-2 text-sm text-emerald-400">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                {f.successMsg}
+              </p>
+            )}
+            {status === "error" && Object.keys(errors).length === 0 && (
+              <p className="mt-4 flex items-center gap-2 text-sm text-red-400">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-400 shrink-0" />
+                {f.errorMsg}
+              </p>
+            )}
+          </form>
+        </div>
+      </div>
+
+      {/* Bottom accent line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+    </section>
+  );
+}
+
+function ContactRow({
+  icon: Icon,
+  label,
+  value,
+  href,
+  highlight,
+}: {
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  label: string;
+  value: string;
+  href?: string;
+  highlight?: boolean;
+}) {
+  const content = (
+    <div className="flex items-center gap-4">
+      <div
+        className={`grid h-11 w-11 shrink-0 place-items-center border transition-colors ${
+          highlight
+            ? "border-accent/50 bg-accent/10"
+            : "border-border/70 bg-card"
+        }`}
+      >
+        <Icon
+          className={`h-4 w-4 ${highlight ? "text-accent" : "text-muted-foreground"}`}
+          strokeWidth={1.6}
+        />
+      </div>
+      <div>
+        <div className="text-[11px] uppercase tracking-widest text-muted-foreground/60">
+          {label}
+        </div>
+        <div
+          className={`mt-0.5 font-heading text-[17px] font-semibold tracking-wide ${
+            highlight ? "text-accent" : "text-foreground"
+          }`}
+        >
+          {value}
+        </div>
+      </div>
+    </div>
+  );
+
+  return href ? (
+    <a href={href} className="group block transition-opacity hover:opacity-75">
+      {content}
+    </a>
+  ) : (
+    <div>{content}</div>
+  );
+}
+
+function Field({
+  name,
+  label,
+  type = "text",
+  error,
+}: {
+  name: string;
+  label: string;
+  type?: string;
+  error?: string;
+}) {
+  return (
+    <div>
+      <label className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+        {label}
+      </label>
+      <input
+        name={name}
+        type={type}
+        maxLength={255}
+        className="mt-2 w-full border border-border/70 bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:border-accent focus:outline-none transition-colors"
+      />
+      {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+    </div>
+  );
+}

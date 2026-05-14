@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* ── Colors ── */
+  --color-background: #09090f;
+  --color-foreground: #f4f4f5;
+
+  --color-card: #0f0f17;
+  --color-card-foreground: #f4f4f5;
+
+  --color-border: #1e1e2e;
+
+  --color-muted-foreground: #71717a;
+
+  --color-primary: #1d4ed8;
+  --color-primary-foreground: #ffffff;
+
+  --color-accent: #22d3ee;
+  --color-accent-foreground: #09090f;
+
+  --color-section-light: #f5f7fa;
+
+  /* ── Typography ── */
+  --font-heading: "Rajdhani", ui-sans-serif, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+}
+
+/* Grid background pattern — dark bg */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Grid background pattern — light bg */
+@utility bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgb(15 23 42 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(15 23 42 / 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Outlined headline text — fill transparent, stroke uses foreground color */
+@utility text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-foreground);
+}
+
+/* Cut top-right corner shape for CTAs */
+@utility clip-corner {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+
+/* Marquee scroll animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@utility animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@utility pause-marquee {
+  animation-play-state: paused;
+}
+@utility shadow-blue {
+  box-shadow:
+    0 0 40px rgb(29 78 216 / 0.35),
+    0 4px 20px rgb(29 78 216 / 0.2);
+}
