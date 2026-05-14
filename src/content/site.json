@@ -1,27 +1,15 @@
 {
-  "_meta": {
-    "description": "Contenido centralizado del sitio Tello-Astudillo. Cada clave de primer nivel corresponde a una sección / content type de Contentful.",
-    "contentfulTypes": {
-      "siteConfig":     "Configuración global (empresa, contacto, SEO)",
-      "heroSection":    "Sección Hero",
-      "aboutSection":   "Sección Quiénes Somos",
-      "clientLogos":    "Banda de logos de clientes",
-      "contactSection": "Sección Contacto",
-      "footer":         "Footer"
-    }
-  },
-
   "siteConfig": {
     "companyName": "Tello-Astudillo",
     "companyLegalName": "Metalmecánica Tello-Astudillo Asociados Ltda.",
     "tagline": "Fabricación industrial · Chile",
     "foundedYear": 1988,
-    "phone1": "+56 9 0000 0000",
-    "phone1Href": "tel:+56900000000",
+    "phone1": "+56 9 4872 9314",
+    "phone1Href": "tel:+56948729314",
     "phone2": "+56 9 0000 0001",
     "phone2Href": "tel:+56900000001",
     "email": "rtc@tello-astudillo.cl",
-    "whatsapp": "https://wa.me/56900000000",
+    "whatsapp": "https://wa.me/56948729314",
     "whatsappMessage": "Hola Tello-Astudillo, necesito una cotización",
     "address": "Rafael Egaña 3068, Renca, Santiago",
     "addressMapsUrl": "https://www.google.com/maps/search/?api=1&query=Rafael+Egaña+3068,+Renca,+Santiago",
@@ -38,97 +26,65 @@
       "description": "Fabricación de piezas, mecanizado CNC, soldadura inoxidable y mantenimiento industrial. Más de 30 años de trayectoria en Chile."
     }
   },
-
-  "heroSection": {
-    "eyebrow": "Desde 1988 · Industria nacional chilena",
-    "headlineLine1": "SOCIOS ESTRATÉGICOS",
-    "headlineLine2": "EN MANTENIMIENTO",
-    "headlineLine3": "Y FABRICACIÓN INDUSTRIAL.",
-    "body": "Más de 30 años fabricando repuestos industriales, realizando mecanizado CNC, soldadura inoxidable y mantenimiento industrial para procesos críticos.",
-    "ctaPrimary": "Solicitar Cotización",
-    "ctaPrimaryHref": "#contacto",
-    "ctaSecondary": "WhatsApp 24/7",
-    "stats": [
-      { "value": "+30",   "label": "Años de trayectoria" },
-      { "value": "+5000", "label": "Piezas fabricadas al año" },
-      { "value": "+300",  "label": "Clientes a lo largo de todo el país" },
-      { "value": "100%",  "label": "Fabricación a medida" }
-    ]
-  },
-
-  "aboutSection": {
-    "eyebrow": "Quiénes somos",
-    "headlineLine1": "Tres décadas sosteniendo",
-    "headlineLine2": "la industria chilena",
-    "body": "Maestranza especializada en mecanizado CNC, soldadura inoxidable, fabricación a medida y mantenimiento industrial. Servimos a plantas de alimentos, bebidas, farmacéutica y manufactura pesada en todo Chile.",
-    "badge30Label": "años en terreno",
-    "iso": {
-      "badge": "ISO 9001:2015",
-      "body": "Procesos certificados bajo norma internacional. Calidad, trazabilidad y mejora continua en cada proyecto.",
-      "sgsUrl": "https://www.sgs.com/en/certified-clients-and-products",
-      "btnCertification": "Ver certificación ISO 9001:2015",
-      "btnPolicy": "Política de calidad",
-      "certPdfPath": "/iso-certificado.pdf",
-      "policyPdfPath": "/Politica_de_calidad_iso_9001_2015.pdf",
-      "modalTitleCert": "Certificación ISO 9001:2015",
-      "modalTitlePolicy": "Política de Calidad · ISO 9001:2015"
-    }
-  },
-
-  "clientLogos": {
-    "eyebrow": "Empresas que confían en nosotros",
-    "headline": "Confiaron en nuestros servicios",
-    "clients": [
-      { "alt": "CAF" },
-      { "alt": "CCU" },
-      { "alt": "Soprole" },
-      { "alt": "CIAL Alimentos" },
-      { "alt": "Drag Pharma" },
-      { "alt": "ECCU" },
-      { "alt": "Indura" },
-      { "alt": "Manantial" },
-      { "alt": "Nestlé" }
-    ]
-  },
-
-  "contactSection": {
-    "eyebrow": "Contacto",
-    "headlineLine1": "Hablemos de su",
-    "headlineLine2": "proyecto industrial",
-    "body": "Cotice fabricación, mantenciones o atención de emergencia. Respondemos en horas hábiles, todos los días.",
-    "whatsappLabel": "WhatsApp directo",
-    "whatsappValue": "Atención inmediata",
-    "locationLabel": "Ubicación",
-    "form": {
-      "eyebrow": "Solicitud",
-      "subLabel": "Formulario de contacto",
-      "fields": {
-        "name":    { "label": "Nombre *",  "placeholder": "" },
-        "company": { "label": "Empresa",   "placeholder": "" },
-        "email":   { "label": "Email *",   "placeholder": "" },
-        "phone":   { "label": "Teléfono",  "placeholder": "" },
-        "message": { "label": "Mensaje *", "placeholder": "Describa la pieza, proceso o requerimiento..." }
+  "images": {
+    "hero": {
+      "alt": "Planta industrial metalmecánica trabajando en fabricación industrial",
+      "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,w_1920,c_limit,dpr_auto/v1778790337/hero-industrial_yacsme.jpg"
+    },
+    "about": {
+      "alt": "Ingeniero industrial supervisando procesos metalmecánicos",
+      "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,w_900,c_limit,dpr_auto/v1778790347/engineer_zdapyz.jpg"
+    },
+    "clientLogos": [
+      {
+        "alt": "Logo Manantial",
+        "name": "Manantial",
+        "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,w_80,dpr_auto/fl_preserve_transparency/v1778787743/197eaa19-d591-469b-ad32-0bedb5977872.png"
       },
-      "submitBtn": "Enviar solicitud",
-      "sendingBtn": "Enviando…",
-      "successMsg": "Solicitud recibida. Nos pondremos en contacto a la brevedad.",
-      "errorMsg": "Error al enviar. Intente nuevamente o contáctenos por WhatsApp.",
-      "web3formsSubject": "Nueva solicitud desde telloastudillo.cl",
-      "web3formsFromName": "Sitio Web Tello-Astudillo"
+      {
+        "alt": "Logo Nestle",
+        "name": "Nestle",
+        "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,h_80,c_fit,dpr_auto/fl_preserve_transparency/v1778787746/5802cc86-2bab-478b-bd2d-808d072395f0.png"
+      },
+      {
+        "alt": "Logo Indura",
+        "name": "Indura",
+        "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,h_80,c_fit,dpr_auto/fl_preserve_transparency/v1778787706/861d8913-1868-4ae7-9e26-036e4ff2ac97.png"
+      },
+      {
+        "alt": "Logo Eccu",
+        "name": "Eccu",
+        "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,h_80,c_fit,dpr_auto/fl_preserve_transparency/v1778787648/d2dfb366-8e29-4f43-87be-e340ebed436d.png"
+      },
+      {
+        "alt": "Logo Drag Pharma",
+        "name": "Drag Pharma",
+        "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,h_80,c_fit,dpr_auto/fl_preserve_transparency/v1778787634/e2712023-5ca7-4576-8847-7f3d8d5d68c8.png"
+      },
+      {
+        "alt": "Logo CIAL",
+        "name": "CIAL",
+        "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,h_80,c_fit,dpr_auto/fl_preserve_transparency/v1778787623/cial_qtcgww.svg"
+      },
+      {
+        "alt": "Logo Soprole",
+        "name": "Soprole",
+        "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,h_80,c_fit,dpr_auto/fl_preserve_transparency/v1778787593/soprole_qto6je.png"
+      },
+      {
+        "alt": "Logo CAF",
+        "name": "CAF",
+        "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,h_80,c_fit,dpr_auto/fl_preserve_transparency/v1778787568/caf_aig3lc.png"
+      },
+      {
+        "alt": "Logo CCU",
+        "name": "CCU",
+        "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,h_80,c_fit,dpr_auto/fl_preserve_transparency/v1778787556/ccu_uk6toc.png"
+      }
+    ],
+    "certification": {
+      "alt": "Certificación ISO 9000",
+      "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,h_140,c_fit,dpr_auto/fl_preserve_transparency/v1778790392/iso9000_ygqyge.png"
     }
-  },
-
-  "footer": {
-    "description": "Metalmecánica Tello-Astudillo Asociados Ltda. Más de 30 años fabricando piezas y entregando soluciones mecánicas industriales a la industria nacional chilena.",
-    "navLabel": "Navegación",
-    "contactLabel": "Contacto",
-    "mapsLabel": "Ver en Google Maps ↗",
-    "copyright": "Metalmecánica Tello-Astudillo Asociados Ltda. Todos los derechos reservados.",
-    "nav": [
-      { "href": "#empresa",    "label": "Empresa" },
-      { "href": "#servicios",  "label": "Servicios" },
-      { "href": "#materiales", "label": "Materiales" },
-      { "href": "#contacto",   "label": "Contacto" }
-    ]
   }
 }

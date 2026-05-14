@@ -1,9 +1,9 @@
-import site from "@/content/site.json";
-
-const cfg = site.siteConfig;
-const fc = site.footer;
-
-const navLinks = fc.nav;
+const navLinks = [
+  { href: "#empresa", label: "Quiénes somos" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#materiales", label: "Materiales" },
+  { href: "#contacto", label: "Contacto" },
+];
 
 const socialLinks = [
   {
@@ -39,7 +39,12 @@ const socialLinks = [
   },
 ];
 
-export function Footer() {
+interface FooterProps {
+  siteConfig?: { [key: string]: any };
+}
+
+export function Footer({ siteConfig }: FooterProps) {
+  const cfg = siteConfig ?? {};
   return (
     <footer className="relative border-t border-border bg-card text-muted-foreground">
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-30" />
@@ -66,7 +71,8 @@ export function Footer() {
             </a>
 
             <p className="mt-6 max-w-sm text-sm leading-relaxed">
-              {fc.description}
+              Maestranza especializada en fabricación CNC, soldadura inoxidable
+              y mantenimiento industrial para procesos críticos en todo Chile.
             </p>
 
             <div className="mt-6 flex gap-2">
@@ -87,7 +93,7 @@ export function Footer() {
           <div>
             <div className="mb-5 flex items-center gap-2 text-[11px] uppercase tracking-[0.25em]">
               <span className="h-px w-5 bg-accent" />
-              <span className="font-semibold text-accent">{fc.navLabel}</span>
+              <span className="font-semibold text-accent">Navegación</span>
             </div>
             <ul className="space-y-2.5">
               {navLinks.map(({ href, label }) => (
@@ -108,7 +114,7 @@ export function Footer() {
           <div>
             <div className="mb-5 flex items-center gap-2 text-[11px] uppercase tracking-[0.25em]">
               <span className="h-px w-5 bg-accent" />
-              <span className="font-semibold text-accent">{fc.contactLabel}</span>
+              <span className="font-semibold text-accent">Contacto</span>
             </div>
             <ul className="space-y-3 text-sm">
               <li>
@@ -162,7 +168,7 @@ export function Footer() {
               rel="noreferrer"
               className="text-[11px] font-semibold uppercase tracking-wider text-accent transition-opacity hover:opacity-70"
             >
-              {fc.mapsLabel}
+              Ver en Google Maps ↗
             </a>
           </div>
           <iframe
@@ -180,7 +186,7 @@ export function Footer() {
         {/* ── Bottom bar ── */}
         <div className="mt-10 flex flex-col gap-3 border-t border-border/60 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground/50">
-            © {new Date().getFullYear()} {fc.copyright}
+            © {new Date().getFullYear()} Metalmecánica Tello-Astudillo Asociados Ltda. Todos los derechos reservados.
           </p>
           <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground/40">
             {cfg.tagline}

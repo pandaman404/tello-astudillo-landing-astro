@@ -1,19 +1,41 @@
-import heroImg from "@/assets/hero-industrial.jpg";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { HeroStats } from "./HeroStats";
-import site from "@/content/site.json";
 
-const c = site.heroSection;
-const cfg = site.siteConfig;
+interface SiteConfig {
+  phone1?: string;
+  phone1Href?: string;
+  phone2?: string;
+  phone2Href?: string;
+  email?: string;
+  whatsapp?: string;
+  whatsappMessage?: string;
+  address?: string;
+  addressMapsUrl?: string;
+  mapsEmbedUrl?: string;
+  region?: string;
+  emergencyBadge?: string;
+  [key: string]: any;
+}
 
-export function Hero() {
+interface HeroProps {
+  heroImage?: { imageUrl?: string; src?: string; alt?: string };
+  siteConfig?: SiteConfig;
+}
+
+export function Hero({ heroImage, siteConfig }: HeroProps) {
+  const imgSrc = heroImage?.imageUrl ?? heroImage?.src;
+  const imgAlt = heroImage?.alt ?? "Maestranza Tello-Astudillo: mecanizado CNC y soldadura industrial";
+  const whatsappHref = siteConfig?.whatsapp
+    ? `${siteConfig.whatsapp}?text=${encodeURIComponent(siteConfig.whatsappMessage ?? "")}`
+    : "#";
+
   return (
     <section className="relative isolate overflow-hidden bg-background pt-20">
       {/* Background image */}
       <div className="absolute inset-0 -z-10">
         <img
-          src={heroImg.src}
-          alt="Maestranza Tello-Astudillo: mecanizado CNC y soldadura industrial"
+          src={imgSrc}
+          alt={imgAlt}
           width={1920}
           height={1280}
           className="h-full w-full object-cover opacity-40"
@@ -31,38 +53,38 @@ export function Hero() {
         <div className="col-span-12 lg:col-span-8">
           <div className="mb-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
             <span className="h-px w-10 bg-accent" />
-            {c.eyebrow}
+            Desde 1988 · Industria nacional chilena
           </div>
 
           <h1 className="font-heading text-[clamp(3.25rem,9vw,5.5rem)] leading-[0.88] tracking-tight text-foreground">
-            {c.headlineLine1}
+            SOCIOS ESTRATÉGICOS
             <br />
-            <span className="text-stroke">{c.headlineLine2}</span>
+            <span className="text-stroke">EN MANTENIMIENTO</span>
             <br />
-            <span className="text-accent">{c.headlineLine3}</span>
+            <span className="text-accent">Y FABRICACIÓN INDUSTRIAL.</span>
           </h1>
 
           <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            {c.body}
+            Más de 30 años fabricando repuestos industriales, realizando mecanizado CNC, soldadura inoxidable y mantenimiento industrial para procesos críticos.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
-              href={c.ctaPrimaryHref}
+              href="#contacto"
               className="group inline-flex items-center gap-3 clip-corner bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-blue transition-all hover:brightness-125"
             >
-              {c.ctaPrimary}
+              Solicitar Cotización
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
 
             <a
-              href={`${cfg.whatsapp}?text=${encodeURIComponent(cfg.whatsappMessage)}`}
+              href={whatsappHref}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-3 border border-accent/50 bg-accent/10 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-accent backdrop-blur-sm transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               <MessageCircle className="h-4 w-4" />
-              {c.ctaSecondary}
+              WhatsApp 24/7
             </a>
           </div>
         </div>

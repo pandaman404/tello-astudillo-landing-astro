@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
-import engineerImg from "@/assets/engineer.jpg";
-import isoImg from "@/assets/iso9000.png";
 import { FileText, X } from "lucide-react";
 import site from "@/content/site.json";
 
-const c = site.aboutSection;
-const iso = c.iso;
+const pdfUrl = "/Politica_de_calidad_iso_9001_2015.pdf";
+const certUrl = "/iso-certificado.pdf";
 
-export function About() {
+interface AboutProps {
+  aboutImage?: { src?: string; imageUrl?: string; alt?: string };
+  certImage?: { src?: string; imageUrl?: string; alt?: string };
+}
+
+export function About({ aboutImage, certImage }: AboutProps) {
+  const engineerSrc = aboutImage?.imageUrl ?? aboutImage?.src;
+  const engineerAlt = aboutImage?.alt ?? "Ingeniero revisando plano técnico junto a pieza mecanizada";
+  const isoSrc = certImage?.imageUrl ?? certImage?.src;
   const [activePdf, setActivePdf] = useState<{ url: string; title: string } | null>(null);
 
   useEffect(() => {
@@ -34,8 +40,8 @@ export function About() {
               {/* Accent slab behind image */}
               <div className="absolute -inset-3 -z-10 border border-primary/10 bg-primary/5" />
               <img
-                src={engineerImg.src}
-                alt="Ingeniero revisando plano técnico junto a pieza mecanizada"
+                src={engineerSrc}
+                alt={engineerAlt}
                 loading="lazy"
                 width={1024}
                 height={1024}
@@ -45,7 +51,7 @@ export function About() {
               <div className="absolute -bottom-5 -right-5 hidden border border-slate-200 bg-white px-6 py-4 shadow-md sm:block">
                 <div className="font-heading text-5xl font-bold leading-none text-slate-900">30+</div>
                 <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-slate-400">
-                  {c.badge30Label}
+                  años en terreno
                 </div>
               </div>
             </div>
@@ -56,19 +62,21 @@ export function About() {
               {/* Eyebrow */}
               <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
                 <span className="h-px w-8 bg-primary" />
-                {c.eyebrow}
+                Quiénes somos
               </div>
 
               {/* Headline */}
               <h2 className="mt-4 font-heading text-4xl font-bold uppercase leading-[0.95] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem]">
-                {c.headlineLine1}
+                Tres décadas sosteniendo
                 <br />
-                <span className="text-primary">{c.headlineLine2}</span>
+                <span className="text-primary">la industria chilena</span>
               </h2>
 
               {/* Paragraph */}
               <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-slate-500">
-                {c.body}
+                Maestranza especializada en mecanizado CNC, soldadura inoxidable,
+                fabricación a medida y mantenimiento industrial. Servimos a plantas
+                de alimentos, bebidas, farmacéutica y manufactura pesada en todo Chile.
               </p>
 
               {/* Divider */}
@@ -78,15 +86,15 @@ export function About() {
               <div className="mt-8 border-l-2 border-primary bg-white px-6 py-5 shadow-sm">
                 <div className="flex items-center gap-4">
                   <a
-                    href={iso.sgsUrl}
+                    href="https://www.sgs.com/en/certified-clients-and-products"
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Verificar certificación SGS"
                     className="shrink-0 transition-opacity hover:opacity-60"
                   >
                     <img
-                      src={isoImg.src}
-                      alt={iso.badge}
+                      src={isoSrc}
+                      alt="ISO 9001:2015"
                       width={44}
                       height={44}
                       className="h-11 w-11 object-contain"
@@ -95,10 +103,11 @@ export function About() {
                   </a>
                   <div>
                     <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary">
-                      {iso.badge}
+                      ISO 9001:2015
                     </div>
                     <p className="mt-0.5 text-[13px] leading-relaxed text-slate-500">
-                      {iso.body}
+                      Procesos certificados bajo norma internacional. Calidad,
+                      trazabilidad y mejora continua en cada proyecto.
                     </p>
                   </div>
                 </div>
@@ -107,19 +116,19 @@ export function About() {
                 <div className="mt-5 flex flex-wrap gap-2.5">
                   <button
                     type="button"
-                    onClick={() => setActivePdf({ url: iso.certPdfPath, title: iso.modalTitleCert })}
+                    onClick={() => setActivePdf({ url: certUrl, title: "Certificación ISO 9001:2015" })}
                     className="inline-flex items-center gap-2 border border-primary px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-primary transition-all hover:bg-primary hover:text-white"
                   >
                     <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={1.6} />
-                    {iso.btnCertification}
+                    Ver certificación ISO 9001:2015
                   </button>
                   <button
                     type="button"
-                    onClick={() => setActivePdf({ url: iso.policyPdfPath, title: iso.modalTitlePolicy })}
+                    onClick={() => setActivePdf({ url: pdfUrl, title: "Política de Calidad · ISO 9001:2015" })}
                     className="inline-flex items-center gap-2 border border-slate-200 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-500 transition-all hover:border-primary hover:text-primary"
                   >
                     <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={1.6} />
-                    {iso.btnPolicy}
+                    Política de calidad
                   </button>
                 </div>
               </div>
@@ -144,7 +153,7 @@ export function About() {
             <div className="flex items-center justify-between border-b border-border/60 bg-card px-5 py-3">
               <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                 <img
-                  src={isoImg.src}
+                  src={isoSrc}
                   alt=""
                   width={16}
                   height={16}

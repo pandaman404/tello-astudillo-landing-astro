@@ -1,5 +1,11 @@
 import site from "@/content/site.json";
-const stats = site.heroSection.stats;
+
+const stats = [
+  { value: "+30", label: "Años de trayectoria" },
+  { value: "+5000", label: "Piezas fabricadas al año" },
+  { value: "+300", label: "Clientes a lo largo de todo el país" },
+  { value: "100%", label: "Fabricación a medida" },
+];
 
 export function HeroStats() {
   return (

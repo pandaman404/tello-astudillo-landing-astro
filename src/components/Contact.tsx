@@ -3,9 +3,7 @@ import { z } from "zod";
 import { Phone, Mail, MapPin, MessageCircle, Send } from "lucide-react";
 import site from "@/content/site.json";
 
-const c = site.contactSection;
 const cfg = site.siteConfig;
-const f = c.form;
 
 const schema = z.object({
   name: z.string().trim().min(2, "Ingrese su nombre").max(100),
@@ -45,8 +43,8 @@ export function Contact() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
-          subject: f.web3formsSubject,
-          from_name: f.web3formsFromName,
+          subject: "Nueva solicitud de cotización desde web",
+          from_name: "Tello-Astudillo Contact Form",
           replyto: r.data.email,
           ...r.data,
         }),
@@ -78,25 +76,26 @@ export function Contact() {
           <div>
             <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
               <span className="h-px w-10 bg-accent" />
-              {c.eyebrow}
+              Contacto
             </div>
 
             <h2 className="mt-4 font-heading text-4xl font-bold uppercase leading-[0.93] tracking-tight text-foreground sm:text-5xl">
-              {c.headlineLine1}
+              Hablemos de su
               <br />
-              <span className="text-accent">{c.headlineLine2}</span>
+              <span className="text-accent">proyecto industrial</span>
             </h2>
 
             <p className="mt-6 max-w-md text-[15px] leading-relaxed text-muted-foreground">
-              {c.body}
+              Cotice fabricación, mantenciones o atención de emergencia.
+              Respondemos en horas hábiles, todos los días.
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <ContactRow icon={Phone} label="Teléfono 1" value={cfg.phone1} href={cfg.phone1Href} />
               <ContactRow icon={Phone} label="Teléfono 2" value={cfg.phone2} href={cfg.phone2Href} />
-              <ContactRow icon={MessageCircle} label={c.whatsappLabel} value={c.whatsappValue} href={cfg.whatsapp} highlight />
+              <ContactRow icon={MessageCircle} label="WhatsApp directo" value="Atención inmediata" href={cfg.whatsapp} highlight />
               <ContactRow icon={Mail} label="Correo" value={cfg.email} href={`mailto:${cfg.email}`} />
-              <ContactRow icon={MapPin} label={c.locationLabel} value={cfg.address} href={cfg.addressMapsUrl} />
+              <ContactRow icon={MapPin} label="Ubicación" value={cfg.address} href={cfg.addressMapsUrl} />
             </div>
           </div>
 
@@ -107,9 +106,9 @@ export function Contact() {
           >
             {/* Form header eyebrow */}
             <div className="mb-7 flex items-center gap-3 text-[11px] uppercase tracking-[0.25em]">
-              <span className="font-semibold text-accent">[ {f.eyebrow} ]</span>
+              <span className="font-semibold text-accent">[ SOLICITUD DE COTIZACIÓN ]</span>
               <span className="h-px flex-1 bg-border/60" />
-              <span className="text-muted-foreground/50">{f.subLabel}</span>
+              <span className="text-muted-foreground/50">Campos requeridos *</span>
             </div>
 
             {/* Honeypot — oculto para humanos, visible para bots */}
@@ -123,22 +122,22 @@ export function Contact() {
             />
 
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field name="name" label={f.fields.name.label} error={errors.name} />
-              <Field name="company" label={f.fields.company.label} error={errors.company} />
-              <Field name="email" label={f.fields.email.label} type="email" error={errors.email} />
-              <Field name="phone" label={f.fields.phone.label} error={errors.phone} />
+              <Field name="name" label="Nombre *" error={errors.name} />
+              <Field name="company" label="Empresa" error={errors.company} />
+              <Field name="email" label="Email *" type="email" error={errors.email} />
+              <Field name="phone" label="Teléfono" error={errors.phone} />
             </div>
 
             <div className="mt-5">
               <label className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
-                {f.fields.message.label}
+                Mensaje *
               </label>
               <textarea
                 name="message"
                 rows={5}
                 maxLength={2000}
                 className="mt-2 w-full resize-none border border-border/70 bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:border-accent focus:outline-none transition-colors"
-                placeholder={f.fields.message.placeholder}
+                placeholder="Describa la pieza, proceso o requerimiento..."
               />
               {errors.message && (
                 <p className="mt-1 text-xs text-red-400">{errors.message}</p>
@@ -153,11 +152,11 @@ export function Contact() {
               {status === "sending" ? (
                 <>
                   <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground/30 border-t-primary-foreground" />
-                  {f.sendingBtn}
+                  Enviando...
                 </>
               ) : (
                 <>
-                  {f.submitBtn}
+                  Enviar solicitud
                   <Send className="h-4 w-4" />
                 </>
               )}
@@ -166,13 +165,13 @@ export function Contact() {
             {status === "ok" && (
               <p className="mt-4 flex items-center gap-2 text-sm text-emerald-400">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
-                {f.successMsg}
+                Solicitud recibida. Nos pondremos en contacto a la brevedad.
               </p>
             )}
             {status === "error" && Object.keys(errors).length === 0 && (
               <p className="mt-4 flex items-center gap-2 text-sm text-red-400">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-400 shrink-0" />
-                {f.errorMsg}
+                Error al enviar. Por favor intente nuevamente.
               </p>
             )}
           </form>

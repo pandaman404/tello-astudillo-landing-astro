@@ -1,23 +1,12 @@
-import cafLogo from "@/assets/caf-logo.png";
-import ccuLogo from "@/assets/ccu-2.png";
-import SoproleLogo from "@/assets/logo-Soprole-2.png";
-import site from "@/content/site.json";
+interface ClientLogosProps {
+  clientLogos?: Array<{ alt: string; name: string; imageUrl: string }>;
+}
 
-const c = site.clientLogos;
+export function ClientLogos({ clientLogos }: ClientLogosProps) {
+  const clients = clientLogos && clientLogos.length > 0
+    ? clientLogos
+    : [];
 
-// Map client alts to their logo src (extend as new logos are added)
-const logoMap: Record<string, string> = {
-  "CAF": cafLogo.src,
-  "CCU": ccuLogo.src,
-  "Soprole": SoproleLogo.src,
-};
-
-const clients = c.clients.map((cl) => ({
-  src: logoMap[cl.alt] ?? cafLogo.src,
-  alt: cl.alt,
-}));
-
-export function ClientLogos() {
   const track = [...clients, ...clients];
 
   return (
@@ -36,10 +25,10 @@ export function ClientLogos() {
 
       <div className="mb-5 text-center sm:mb-7">
         <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-400">
-          {c.eyebrow}
+          Empresas que confían en nosotros
         </p>
         <h2 className="mt-1.5 font-heading text-xl font-bold uppercase tracking-wider text-slate-700 sm:text-2xl">
-          {c.headline}
+          Confiaron en nuestros servicios
         </h2>
         <div className="mx-auto mt-2.5 h-px w-12 bg-primary/30" />
       </div>
@@ -52,7 +41,7 @@ export function ClientLogos() {
               className="flex h-12 w-24 shrink-0 items-center justify-center sm:h-14 sm:w-32"
             >
               <img
-                src={client.src}
+                src={client.imageUrl}
                 alt={client.alt}
                 className="max-h-9 w-auto object-contain grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100 sm:max-h-10"
               />

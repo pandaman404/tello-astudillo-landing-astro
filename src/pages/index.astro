@@ -7,9 +7,12 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
 import { Services } from "@/components/Services";
-import site from "@/content/site.json";
+import { getLandingPage } from "@/services/contentful";
 
-const seo = site.siteConfig.seo;
+const landingPage = await getLandingPage();
+const siteConfig = landingPage.siteConfig?.siteConfig || landingPage.siteConfig;
+const images = landingPage.images;
+const seo = siteConfig.seo;
 ---
 
 <html lang="es">
@@ -26,11 +29,11 @@ const seo = site.siteConfig.seo;
   </head>
   <body>
     <Navbar client:load />
-    <Hero client:load />
-    <ClientLogos client:load />
-    <About client:load />
+    <Hero client:load heroImage={images.hero} siteConfig={siteConfig} />
+    <ClientLogos client:load clientLogos={images.clientLogos} />
+    <About client:load aboutImage={images.about} certImage={images.certification} />
     <Services client:load />
     <Contact client:load />
-    <Footer client:load />
+    <Footer client:load siteConfig={siteConfig} />
   </body>
 </html>
