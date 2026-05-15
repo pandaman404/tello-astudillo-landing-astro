@@ -124,8 +124,11 @@ const materialsGroups = [
   },
 ];
 
-export function Materials() {
-    const [active, setActive] = useState(materialsGroups[0].k);
+interface Group { k: string; title: string; items: string[]; }
+
+export function Materials({ materials }: { materials?: Group[] }) {
+    const data = materials ?? materialsGroups;
+    const [active, setActive] = useState(data[0].k);
 
     return(
     <section id="materials" className="relative overflow-hidden py-16 sm:py-24">
@@ -139,11 +142,11 @@ export function Materials() {
               <span className="h-px w-10 bg-accent"/>
                 Materiales
             </div>
-            <h3 className="text-display text-4xl leading-[0.93] tracking-tight md:text-[3.5rem]">
+            <h2 className="text-display text-4xl leading-[0.93] tracking-tight md:text-[3.5rem]">
                 ABASTECIMIENTO
                 <br />
                 <span className="text-accent">METALMECÁNICO</span>
-            </h3>
+            </h2>
             </div>
                 <p className="col-span-12 text-sm leading-relaxed text-muted-foreground lg:col-span-5 lg:max-w-sm">
                     Selección de aceros, metales y suministros para procesos metalmecánicos, fabricación industrial y proyectos de ingeniería.

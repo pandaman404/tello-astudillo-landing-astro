@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { FileText, X } from "lucide-react";
-import site from "@/content/site.json";
 
 const pdfUrl = "/Politica_de_calidad_iso_9001_2015.pdf";
 const certUrl = "/iso-certificado.pdf";
 
 interface AboutProps {
   aboutImage?: { src?: string; imageUrl?: string; alt?: string };
+  aboutInfo?: { companyExperienceYears?: number}
   certImage?: { src?: string; imageUrl?: string; alt?: string };
 }
 
-export function About({ aboutImage, certImage }: AboutProps) {
+export function About({ aboutImage, aboutInfo, certImage }: AboutProps) {
   const engineerSrc = aboutImage?.imageUrl ?? aboutImage?.src;
   const engineerAlt = aboutImage?.alt ?? "Ingeniero revisando plano técnico junto a pieza mecanizada";
   const isoSrc = certImage?.imageUrl ?? certImage?.src;
@@ -36,7 +36,7 @@ export function About({ aboutImage, certImage }: AboutProps) {
           <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
 
             {/* ── Left: image ── */}
-            <div className="relative">
+            <div className="scroll-reveal relative">
               {/* Accent slab behind image */}
               <div className="absolute -inset-3 -z-10 border border-primary/10 bg-primary/5" />
               <img
@@ -45,11 +45,11 @@ export function About({ aboutImage, certImage }: AboutProps) {
                 loading="lazy"
                 width={1024}
                 height={1024}
-                className="aspect-[4/5] w-full object-cover"
+                className="aspect-[4/5] w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
               />
               {/* Badge 30+ */}
-              <div className="absolute -bottom-5 -right-5 hidden border border-slate-200 bg-white px-6 py-4 shadow-md sm:block">
-                <div className="font-heading text-5xl font-bold leading-none text-slate-900">30+</div>
+              <div className="animate-fade-in-up delay-300 absolute -bottom-5 -right-5 hidden border border-slate-200 bg-white px-6 py-4 shadow-md sm:block">
+                <div className="font-heading text-5xl font-bold leading-none text-slate-900">{aboutInfo?.companyExperienceYears ?? 30}+</div>
                 <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-slate-400">
                   años en terreno
                 </div>
@@ -57,17 +57,17 @@ export function About({ aboutImage, certImage }: AboutProps) {
             </div>
 
             {/* ── Right: content ── */}
-            <div className="flex flex-col gap-0 lg:pl-2">
+            <div className="scroll-reveal flex flex-col gap-0 lg:pl-2">
 
               {/* Eyebrow */}
-              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+              <div className="animate-fade-in-up flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
                 <span className="h-px w-8 bg-primary" />
                 Quiénes somos
               </div>
 
               {/* Headline */}
-              <h2 className="mt-4 font-heading text-4xl font-bold uppercase leading-[0.95] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem]">
-                Tres décadas sosteniendo
+              <h2 className="animate-fade-in-up delay-100 mt-4 font-heading text-4xl font-bold uppercase leading-[0.95] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem]">
+                Tres décadas impulsando
                 <br />
                 <span className="text-primary">la industria chilena</span>
               </h2>
@@ -116,7 +116,10 @@ export function About({ aboutImage, certImage }: AboutProps) {
                 <div className="mt-5 flex flex-wrap gap-2.5">
                   <button
                     type="button"
-                    onClick={() => setActivePdf({ url: certUrl, title: "Certificación ISO 9001:2015" })}
+                    onClick={() => {
+                      console.log("🔘 Botón certificación presionado");
+                      setActivePdf({ url: certUrl, title: "Certificación ISO 9001:2015" });
+                    }}
                     className="inline-flex items-center gap-2 border border-primary px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-primary transition-all hover:bg-primary hover:text-white"
                   >
                     <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={1.6} />
@@ -124,7 +127,10 @@ export function About({ aboutImage, certImage }: AboutProps) {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setActivePdf({ url: pdfUrl, title: "Política de Calidad · ISO 9001:2015" })}
+                    onClick={() => {
+                      console.log("🔘 Botón política presionado");
+                      setActivePdf({ url: pdfUrl, title: "Política de Calidad · ISO 9001:2015" });
+                    }}
                     className="inline-flex items-center gap-2 border border-slate-200 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-500 transition-all hover:border-primary hover:text-primary"
                   >
                     <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={1.6} />

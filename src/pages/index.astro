@@ -1,5 +1,7 @@
 ---
 import "@/styles/global.css";
+import SEO from "@/components/SEO.astro";
+import JsonLd from "@/components/JsonLd.astro";
 import { About } from "@/components/About";
 import { ClientLogos } from "@/components/ClientLogos";
 import { Contact } from "@/components/Contact";
@@ -11,31 +13,72 @@ import { Materials } from "@/components/Materials";
 import { getLandingPage } from "@/services/contentful";
 
 const landingPage = await getLandingPage();
-const siteConfig = landingPage.siteConfig?.siteConfig || landingPage.siteConfig;
+const siteConfig = landingPage.siteConfig || {};
+const seo = siteConfig.seo ?? {};
 const images = landingPage.images;
-const seo = siteConfig.seo;
+const heroStats = landingPage.info?.heroStats || [];
+const aboutInfo = landingPage.info?.about || {};
+const services = landingPage.info?.services || [];
+const materials = landingPage.info?.materials || [];
+
+const ogImage = images?.hero?.imageUrl;
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <meta name="generator" content={Astro.generator} />
-    <title>{seo.title}</title>
-    <meta name="description" content={seo.description} />
+
+    <!-- Preload LCP hero image -->
+    {ogImage && (
+      <link rel="preload" as="image" href={ogImage} fetchpriority="high" />
+    )}
+
+    <SEO
+      title={seo.title ?? "Maestranza Tello-Astudillo · Mecanizado CNC y Soldadura Industrial"}
+      description={seo.description ?? "Fabricación de piezas, mecanizado CNC, soldadura inoxidable y mantenimiento industrial. Más de 30 años de trayectoria en Chile."}
+      ogImage={ogImage}
+    />
+
+    <JsonLd siteConfig={siteConfig} />
   </head>
-  <body>
+
+  <body id="top">
+    <!-- Navbar: needs hydration — scroll state + mobile menu toggle -->
     <Navbar client:load />
-    <Hero client:load heroImage={images.hero} siteConfig={siteConfig} />
-    <ClientLogos client:load clientLogos={images.clientLogos} />
-    <About client:load aboutImage={images.about} certImage={images.certification} />
-    <Services client:load />
-    <Materials client:load />
-    <Contact client:load />
-    <Footer client:load siteConfig={siteConfig} />
+
+    <main>
+      <!-- Hero: fully static, no interactivity -->
+      <Hero heroImage={images.hero} siteConfig={siteConfig} stats={heroStats} />
+
+      <!-- ClientLogos: CSS-only marquee, no JS needed — render static -->
+      <ClientLogos clientLogos={images.clientLogos} />
+
+      <!-- About: needs hydration — PDF modal (useState + useEffect) -->
+      <About client:visible aboutImage={images.about} certImage={images.certification} aboutInfo={aboutInfo} />
+
+      <!-- Services: needs hydration — tab/accordion interaction (useState) -->
+      <Services client:visible services={services} />
+
+      <!-- Materials: needs hydration — accordion interaction (useState) -->
+      <Materials client:visible materials={materials} />
+
+      <!-- Contact: needs hydration — form validation + async fetch -->
+      <Contact client:visible siteConfig={siteConfig} />
+    </main>
+
+    <!-- Footer: fully static, no interactivity -->
+    <Footer siteConfig={siteConfig} />
+
+    <!-- Scroll reveal: lightweight external module -->
+    <script>
+      import "@/styles/scrollReveal.ts";
+    </script>
   </body>
 </html>

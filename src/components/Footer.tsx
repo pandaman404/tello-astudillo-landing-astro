@@ -43,8 +43,7 @@ interface FooterProps {
   siteConfig?: { [key: string]: any };
 }
 
-export function Footer({ siteConfig }: FooterProps) {
-  const cfg = siteConfig ?? {};
+export function Footer({ siteConfig = {} }: FooterProps) {
   return (
     <footer className="relative border-t border-border bg-card text-muted-foreground">
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-30" />
@@ -118,28 +117,33 @@ export function Footer({ siteConfig }: FooterProps) {
             </div>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href={cfg.phone1Href} className="transition-colors hover:text-foreground">
-                  {cfg.phone1}
+                <a href={siteConfig?.phone1Href} className="transition-colors hover:text-foreground">
+                  {siteConfig?.phone1}
                 </a>
               </li>
               <li>
-                <a href={cfg.phone2Href} className="transition-colors hover:text-foreground">
-                  {cfg.phone2}
+                <a href={siteConfig?.phone2Href} className="transition-colors hover:text-foreground">
+                  {siteConfig?.phone2}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${cfg.email}`} className="break-all transition-colors hover:text-foreground">
-                  {cfg.email}
+                <a href={siteConfig?.phone3Href} className="transition-colors hover:text-foreground">
+                  {siteConfig?.phone3}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${siteConfig?.email}`} className="break-all transition-colors hover:text-foreground">
+                  {siteConfig?.email}
                 </a>
               </li>
               <li>
                 <a
-                  href={cfg.addressMapsUrl}
+                  href={siteConfig?.addressMapsUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="transition-colors hover:text-foreground"
                 >
-                  {cfg.address}
+                  {siteConfig?.address}
                 </a>
               </li>
               <li>
@@ -148,7 +152,7 @@ export function Footer({ siteConfig }: FooterProps) {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-50" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
                   </span>
-                  {cfg.emergencyBadge}
+                  {siteConfig?.emergencyBadge}
                 </span>
               </li>
             </ul>
@@ -160,10 +164,10 @@ export function Footer({ siteConfig }: FooterProps) {
           <div className="flex items-center justify-between border-b border-border/60 px-4 py-2.5">
             <span className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground/60">
               <span className="h-px w-4 bg-accent/50" />
-              {cfg.address}
+              {siteConfig?.address}
             </span>
             <a
-              href={cfg.addressMapsUrl}
+              href={siteConfig?.addressMapsUrl}
               target="_blank"
               rel="noreferrer"
               className="text-[11px] font-semibold uppercase tracking-wider text-accent transition-opacity hover:opacity-70"
@@ -172,7 +176,7 @@ export function Footer({ siteConfig }: FooterProps) {
             </a>
           </div>
           <iframe
-            src={cfg.mapsEmbedUrl}
+            src={siteConfig?.mapsEmbedUrl}
             width="100%"
             height="220"
             loading="lazy"
@@ -189,7 +193,7 @@ export function Footer({ siteConfig }: FooterProps) {
             © {new Date().getFullYear()} Metalmecánica Tello-Astudillo Asociados Ltda. Todos los derechos reservados.
           </p>
           <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground/40">
-            {cfg.tagline}
+            {siteConfig?.tagline}
           </p>
         </div>
       </div>

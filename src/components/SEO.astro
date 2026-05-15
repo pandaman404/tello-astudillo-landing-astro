@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href,
+  ogImage,
+  ogType = "website",
+  noindex = false,
+} = Astro.props;
+
+const siteName = "Maestranza Tello-Astudillo";
+---
+
+<!-- Primary -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+<meta name="theme-color" content="#0a0f1a" />
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="es_CL" />
+{ogImage && <meta property="og:image" content={ogImage} />}
+{ogImage && <meta property="og:image:width" content="1200" />}
+{ogImage && <meta property="og:image:height" content="630" />}
+{ogImage && <meta property="og:image:alt" content={title} />}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{ogImage && <meta name="twitter:image" content={ogImage} />}

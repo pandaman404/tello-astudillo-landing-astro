@@ -1,146 +1,26 @@
 import { useState } from "react";
 
-const serviceGroups = [
-  {
-    k: "01",
-    title: "Diseño e ingeniería",
-    items: [
-      "Levantamiento técnico",
-      "Diseño mecánico",
-      "Modelado CAD 2D y 3D",
-      "Desarrollo de planos de fabricación",
-      "Metrología",
-    ],
-  },
-  {
-    k: "02",
-    title: "Corte de materiales",
-    items: ["Corte láser", "Corte por oxicorte", "Corte por chorro de agua"],
-  },
-  {
-    k: "03",
-    title: "Mecanizado",
-    items: [
-      "Torneado convencional",
-      "Torneado CNC",
-      "Fresado convencional",
-      "Fresado CNC",
-      "Taladrado",
-      "Cepillado",
-      "Rectificado",
-    ],
-  },
-  {
-    k: "04",
-    title: "Conformado y deformación",
-    items: ["Plegado de planchas", "Curvado de tubos"],
-  },
-  {
-    k: "05",
-    title: "Soldadura y unión",
-    items: [
-      "Soldadura MIG/MAG",
-      "Soldadura TIG",
-      "Soldadura de aluminio",
-      "Soldadura inoxidable",
-      "Punteo y armado",
-    ],
-  },
-  {
-    k: "06",
-    title: "Fabricación estructural",
-    items: [
-      "Estructuras metálicas",
-      "Estanques",
-      "Piping",
-      "Plataformas y pasarelas",
-      "Soportes y bastidores",
-    ],
-  },
-  {
-    k: "07",
-    title: "Tratamientos",
-    items: [
-      "Arenado",
-      "Granallado",
-      "Pintura industrial",
-      "Pintura electrostática",
-      "Galvanizado",
-      "Metalizado",
-      "Pulido",
-      "Recubrimientos anticorrosivos",
-      "Temple",
-      "Nitrurado profundo",
-    ],
-  },
-  {
-    k: "08",
-    title: "Montaje y ensamblaje",
-    items: [
-      "Armado mecánico",
-      "Ensamble estructural",
-      "Montaje industrial",
-      "Integración de componentes",
-      "Ajustes mecánicos",
-    ],
-  },
-  {
-    k: "09",
-    title: "Mantención y reparación",
-    items: [
-      "Mantención preventiva",
-      "Mantención correctiva",
-      "Reparación de componentes",
-      "Recuperación de piezas",
-      "Cambio de rodamientos",
-      "Reparación de ejes",
-      "Reparación de bombas y reductores",
-    ],
-  },
-  {
-    k: "10",
-    title: "Control de calidad",
-    items: [
-      "Inspección visual",
-      "Líquidos penetrantes",
-      "Control dimensional",
-      "Trazabilidad de materiales",
-      "Certificación de soldadores",
-    ],
-  },
-  {
-    k: "11",
-    title: "Seguridad y gestión",
-    items: [
-      "Prevención de riesgos",
-      "Gestión de calidad ISO",
-      "Gestión ambiental",
-      "Permisos de trabajo",
-      "Gestión documental",
-      "Planificación y control de producción",
-    ],
-  },
-];
+interface Group { k: string; title: string; items: string[]; }
 
-export function Services() {
-  const [active, setActive] = useState(serviceGroups[0].k);
-  const current = serviceGroups.find((g) => g.k === active) ?? serviceGroups[0];
+export function Services({ services }: { services?: Group[] }) {
+  const [active, setActive] = useState(services?.[0].k);
+  const current = services?.find((g) => g.k === active) ?? services?.[0];
 
   return (
     <section id="servicios" className="bg-background py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6">
       {/* ── Section header ── */}
-      <div className="mb-14 grid grid-cols-12 items-end gap-y-6 gap-x-6">
+      <div className="scroll-reveal mb-14 grid grid-cols-12 items-end gap-y-6 gap-x-6">
         <div className="col-span-12 lg:col-span-7">
           <div className="mb-5 flex items-center gap-3 text-mono text-xs uppercase tracking-[0.3em] text-accent">
             <span className="h-px w-10 bg-accent" />
             Servicios
           </div>
-          <h3 className="text-display text-4xl leading-[0.93] tracking-tight md:text-[3.5rem]">
+          <h2 className="text-display text-4xl leading-[0.93] tracking-tight md:text-[3.5rem]">
             SOLUCIONES
             <br />
             <span className="text-accent">METALMECÁNICAS INTEGRALES.</span>
-          </h3>
+          </h2>
         </div>
         <p className="col-span-12 text-sm leading-relaxed text-muted-foreground lg:col-span-5 lg:max-w-sm">
           Más de 60 procesos industriales organizados por categoría. Selecciona
@@ -149,17 +29,16 @@ export function Services() {
       </div>
 
       {/* ── Desktop / tablet: split panel ── */}
-      <div className="hidden md:flex overflow-hidden border border-border/70 shadow-[0_2px_24px_rgba(0,0,0,0.4)]">
+      <div className="scroll-reveal hidden md:flex overflow-hidden border border-border/70 shadow-[0_2px_24px_rgba(0,0,0,0.4)]">
         {/* Left: nav list */}
         <div className="w-[42%] lg:w-[35%] shrink-0 border-r border-border/70 bg-background">
           <ul>
-            {serviceGroups.map((g) => {
+            {services?.map((g) => {
               const isActive = g.k === active;
               return (
                 <li key={g.k} className="relative border-b border-border/50 last:border-b-0">
-                  {/* Active left-edge accent */}
                   {isActive && (
-                    <span className="absolute inset-y-0 left-0 w-[2px] bg-accent" />
+                    <span className="absolute inset-y-0 left-0 w-[2px] bg-accent animate-slide-in-left" />
                   )}
                   <button
                     type="button"
@@ -202,20 +81,21 @@ export function Services() {
         <div className="flex-1 bg-card px-8 py-10 lg:px-12 lg:py-12">
           {/* Panel eyebrow */}
           <div className="mb-7 flex items-center gap-3 text-mono text-[11px] uppercase tracking-[0.25em]">
-            <span className="text-accent font-semibold">[ {current.k} ]</span>
+            <span className="text-accent font-semibold">[ {current?.k} ]</span>
             <span className="h-px flex-1 bg-border/60" />
-            <span className="text-muted-foreground/70">{current.items.length} procesos</span>
+            <span className="text-muted-foreground/70">{current?.items.length} procesos</span>
           </div>
 
-          <h4 className="text-display text-2xl tracking-wide text-foreground md:text-[2rem]">
-            {current.title}
-          </h4>
+          <h3 className="text-display text-2xl tracking-wide text-foreground md:text-[2rem]">
+            {current?.title}
+          </h3>
 
           <ul className="mt-7 grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {current.items.map((i) => (
+            {current?.items.map((i, idx) => (
               <li
                 key={i}
-                className="group flex items-center gap-3 border-l-2 border-l-accent/40 bg-background/35 px-4 py-3 text-[13px] text-foreground/75 transition-all duration-150 hover:border-l-accent/80 hover:bg-background/60 hover:text-foreground/95"
+                className="animate-fade-in group flex items-center gap-3 border-l-2 border-l-accent/40 bg-background/35 px-4 py-3 text-[13px] text-foreground/75 transition-all duration-150 hover:border-l-accent/80 hover:bg-background/60 hover:text-foreground/95 hover:-translate-y-0.5"
+                style={{ animationDelay: `${idx * 30}ms` }}
               >
                 <span className="h-px w-3 shrink-0 bg-accent/50 transition-all duration-200 group-hover:w-4 group-hover:bg-accent/80" />
                 {i}
@@ -226,8 +106,8 @@ export function Services() {
       </div>
 
       {/* ── Mobile: accordion ── */}
-      <div className="md:hidden border border-border/70 divide-y divide-border/60">
-        {serviceGroups.map((g) => {
+      <div className="scroll-reveal md:hidden border border-border/70 divide-y divide-border/60">
+        {services?.map((g) => {
           const isOpen = g.k === active;
           return (
             <div key={g.k}>
@@ -271,7 +151,7 @@ export function Services() {
               {isOpen && (
                 <ul className="border-t border-border/50 bg-background/50 px-5 py-4 divide-y divide-border/30">
                   {g.items.map((i) => (
-                    <li key={i} className="flex items-center gap-3 py-2.5 text-[13px] text-foreground/75">
+                    <li key={i} className="animate-fade-in flex items-center gap-3 py-2.5 text-[13px] text-foreground/75">
                       <span className="h-px w-3 shrink-0 bg-accent/60" />
                       {i}
                     </li>

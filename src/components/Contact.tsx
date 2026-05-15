@@ -1,9 +1,19 @@
 import { useState } from "react";
 import { z } from "zod";
 import { Phone, Mail, MapPin, MessageCircle, Send } from "lucide-react";
-import site from "@/content/site.json";
 
-const cfg = site.siteConfig;
+interface SiteConfig {
+  phone1?: string;
+  phone1Href?: string;
+  phone2?: string;
+  phone2Href?: string;
+  phone3?: string;
+  phone3Href?: string;
+  email?: string;
+  whatsapp?: string;
+  address?: string;
+  addressMapsUrl?: string;
+}
 
 const schema = z.object({
   name: z.string().trim().min(2, "Ingrese su nombre").max(100),
@@ -13,14 +23,16 @@ const schema = z.object({
   message: z.string().trim().min(10, "Cuéntenos un poco más").max(2000),
 });
 
-const WEB3FORMS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY as string;
+const WEB3FORMS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY as string | undefined;
+const FORM_ENABLED = !!WEB3FORMS_KEY;
 
-export function Contact() {
+export function Contact({ siteConfig = {} }: { siteConfig?: SiteConfig }) {
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!FORM_ENABLED) return;
     const form = new FormData(e.currentTarget);
     // Honeypot: si el campo oculto tiene valor, es un bot
     if (form.get("_hp")) return;
@@ -73,36 +85,37 @@ export function Contact() {
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
 
           {/* ── Left: info ── */}
-          <div>
-            <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          <div className="scroll-reveal">
+            <div className="animate-fade-in-up flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
               <span className="h-px w-10 bg-accent" />
               Contacto
             </div>
 
-            <h2 className="mt-4 font-heading text-4xl font-bold uppercase leading-[0.93] tracking-tight text-foreground sm:text-5xl">
+            <h2 className="animate-fade-in-up delay-100 mt-4 font-heading text-4xl font-bold uppercase leading-[0.93] tracking-tight text-foreground sm:text-5xl">
               Hablemos de su
               <br />
               <span className="text-accent">proyecto industrial</span>
             </h2>
 
-            <p className="mt-6 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+            <p className="animate-fade-in-up delay-200 mt-6 max-w-md text-[15px] leading-relaxed text-muted-foreground">
               Cotice fabricación, mantenciones o atención de emergencia.
               Respondemos en horas hábiles, todos los días.
             </p>
 
-            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <ContactRow icon={Phone} label="Teléfono 1" value={cfg.phone1} href={cfg.phone1Href} />
-              <ContactRow icon={Phone} label="Teléfono 2" value={cfg.phone2} href={cfg.phone2Href} />
-              <ContactRow icon={MessageCircle} label="WhatsApp directo" value="Atención inmediata" href={cfg.whatsapp} highlight />
-              <ContactRow icon={Mail} label="Correo" value={cfg.email} href={`mailto:${cfg.email}`} />
-              <ContactRow icon={MapPin} label="Ubicación" value={cfg.address} href={cfg.addressMapsUrl} />
+            <div className="animate-fade-in-up delay-300 mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <ContactRow icon={Phone} label="Teléfono 1" value={siteConfig?.phone1 || ""} href={siteConfig?.phone1Href} />
+              <ContactRow icon={Phone} label="Teléfono 2" value={siteConfig?.phone2 || ""} href={siteConfig?.phone2Href} />
+              <ContactRow icon={Phone} label="Teléfono 3" value={siteConfig?.phone3 || ""} href={siteConfig?.phone3Href} />
+              <ContactRow icon={MessageCircle} label="WhatsApp directo" value="Atención inmediata" href={siteConfig?.whatsapp} highlight />
+              <ContactRow icon={Mail} label="Correo" value={siteConfig?.email || ""} href={`mailto:${siteConfig?.email}`} />
+              <ContactRow icon={MapPin} label="Ubicación" value={siteConfig?.address || ""} href={siteConfig?.addressMapsUrl} />
             </div>
           </div>
 
           {/* ── Right: form ── */}
           <form
             onSubmit={onSubmit}
-            className="clip-corner relative border border-border/70 bg-card p-8 shadow-[0_2px_32px_rgba(0,0,0,0.5)] sm:p-10"
+            className="scroll-reveal hover-glow clip-corner relative border border-border/70 bg-card p-8 shadow-[0_2px_32px_rgba(0,0,0,0.5)] sm:p-10 transition-all"
           >
             {/* Form header eyebrow */}
             <div className="mb-7 flex items-center gap-3 text-[11px] uppercase tracking-[0.25em]">
@@ -146,8 +159,9 @@ export function Contact() {
 
             <button
               type="submit"
-              disabled={status === "sending"}
-              className="clip-corner mt-8 inline-flex w-full items-center justify-center gap-3 bg-primary px-6 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-blue transition-all hover:brightness-125 disabled:opacity-60 disabled:cursor-not-allowed"
+              disabled={status === "sending" || !FORM_ENABLED}
+              title={!FORM_ENABLED ? "Formulario no disponible: falta configuración" : undefined}
+              className="clip-corner mt-8 inline-flex w-full items-center justify-center gap-3 bg-primary px-6 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-blue transition-all hover:brightness-125 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {status === "sending" ? (
                 <>
@@ -161,6 +175,13 @@ export function Contact() {
                 </>
               )}
             </button>
+
+            {!FORM_ENABLED && (
+              <p className="mt-4 flex items-center gap-2 text-sm text-amber-400">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400 shrink-0" />
+                Formulario no disponible. Contáctenos por WhatsApp o correo.
+              </p>
+            )}
 
             {status === "ok" && (
               <p className="mt-4 flex items-center gap-2 text-sm text-emerald-400">

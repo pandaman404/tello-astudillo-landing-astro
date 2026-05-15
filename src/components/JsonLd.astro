@@ -1,0 +1,80 @@
+---
+interface SiteConfig {
+  companyName?: string;
+  companyLegalName?: string;
+  foundedYear?: number;
+  phone1?: string;
+  email?: string;
+  address?: string;
+  addressMapsUrl?: string;
+  region?: string;
+  seo?: { title?: string; description?: string };
+  [key: string]: any;
+}
+
+interface Props {
+  siteConfig: SiteConfig;
+}
+
+const { siteConfig } = Astro.props;
+const siteUrl = Astro.site?.href.replace(/\/$/, "") ?? "https://www.tello-astudillo.cl";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "LocalBusiness"],
+      "@id": `${siteUrl}/#organization`,
+      "name": siteConfig.companyLegalName ?? siteConfig.companyName,
+      "alternateName": siteConfig.companyName,
+      "url": siteUrl,
+      "foundingDate": String(siteConfig.foundedYear ?? 1988),
+      "description": siteConfig.seo?.description ?? "Maestranza especializada en mecanizado CNC, soldadura inoxidable, fabricación a medida y mantenimiento industrial en Chile.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": siteConfig.address ?? "Rafael Egaña 3068",
+        "addressLocality": "Renca",
+        "addressRegion": "Región Metropolitana",
+        "addressCountry": "CL",
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -33.4046,
+        "longitude": -70.7137,
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": siteConfig.phone1,
+          "contactType": "customer service",
+          "areaServed": "CL",
+          "availableLanguage": "Spanish",
+        },
+      ],
+      "email": siteConfig.email,
+      "hasMap": siteConfig.addressMapsUrl,
+      "sameAs": [],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": siteConfig.companyName ?? "Tello-Astudillo",
+      "publisher": { "@id": `${siteUrl}/#organization` },
+      "inLanguage": "es-CL",
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/#webpage`,
+      "url": siteUrl,
+      "name": siteConfig.seo?.title,
+      "description": siteConfig.seo?.description,
+      "isPartOf": { "@id": `${siteUrl}/#website` },
+      "about": { "@id": `${siteUrl}/#organization` },
+      "inLanguage": "es-CL",
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

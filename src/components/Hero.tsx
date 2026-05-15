@@ -17,12 +17,15 @@ interface SiteConfig {
   [key: string]: any;
 }
 
+interface Stat { value: string; label: string; }
+
 interface HeroProps {
   heroImage?: { imageUrl?: string; src?: string; alt?: string };
   siteConfig?: SiteConfig;
+  stats: Stat[];
 }
 
-export function Hero({ heroImage, siteConfig }: HeroProps) {
+export function Hero({ heroImage, siteConfig, stats }: HeroProps) {
   const imgSrc = heroImage?.imageUrl ?? heroImage?.src;
   const imgAlt = heroImage?.alt ?? "Maestranza Tello-Astudillo: mecanizado CNC y soldadura industrial";
   const whatsappHref = siteConfig?.whatsapp
@@ -31,13 +34,16 @@ export function Hero({ heroImage, siteConfig }: HeroProps) {
 
   return (
     <section className="relative isolate overflow-hidden bg-background pt-20">
-      {/* Background image */}
+      {/* Background image — LCP element: eager + high priority */}
       <div className="absolute inset-0 -z-10">
         <img
           src={imgSrc}
           alt={imgAlt}
           width={1920}
           height={1280}
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
           className="h-full w-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
@@ -51,12 +57,12 @@ export function Hero({ heroImage, siteConfig }: HeroProps) {
       <div className="mx-auto grid min-h-[92vh] max-w-7xl grid-cols-12 items-center gap-6 px-6 py-24">
         {/* Left: headline + CTAs */}
         <div className="col-span-12 lg:col-span-8">
-          <div className="mb-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          <div className="animate-fade-in-up mb-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
             <span className="h-px w-10 bg-accent" />
             Desde 1988 · Industria nacional chilena
           </div>
 
-          <h1 className="font-heading text-[clamp(3.25rem,9vw,5.5rem)] leading-[0.88] tracking-tight text-foreground">
+          <h1 className="animate-fade-in-up delay-100 font-heading text-[clamp(3.25rem,9vw,5.5rem)] leading-[0.88] tracking-tight text-foreground">
             SOCIOS ESTRATÉGICOS
             <br />
             <span className="text-stroke">EN MANTENIMIENTO</span>
@@ -64,14 +70,14 @@ export function Hero({ heroImage, siteConfig }: HeroProps) {
             <span className="text-accent">Y FABRICACIÓN INDUSTRIAL.</span>
           </h1>
 
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          <p className="animate-fade-in-up delay-200 mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
             Más de 30 años fabricando repuestos industriales, realizando mecanizado CNC, soldadura inoxidable y mantenimiento industrial para procesos críticos.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <div className="animate-fade-in-up delay-300 mt-10 flex flex-wrap items-center gap-4">
             <a
               href="#contacto"
-              className="group inline-flex items-center gap-3 clip-corner bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-blue transition-all hover:brightness-125"
+              className="btn-sweep group inline-flex items-center gap-3 clip-corner bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-blue transition-all hover:brightness-125"
             >
               Solicitar Cotización
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -81,7 +87,7 @@ export function Hero({ heroImage, siteConfig }: HeroProps) {
               href={whatsappHref}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 border border-accent/50 bg-accent/10 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-accent backdrop-blur-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+              className="hover-lift inline-flex items-center gap-3 border border-accent/50 bg-accent/10 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-accent backdrop-blur-sm transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               <MessageCircle className="h-4 w-4" />
               WhatsApp 24/7
@@ -90,8 +96,8 @@ export function Hero({ heroImage, siteConfig }: HeroProps) {
         </div>
 
         {/* Right: stats grid */}
-        <div className="col-span-12 lg:col-span-4">
-          <HeroStats />
+        <div className="animate-fade-in-up delay-400 col-span-12 lg:col-span-4">
+          <HeroStats stats={stats} />
         </div>
       </div>
 

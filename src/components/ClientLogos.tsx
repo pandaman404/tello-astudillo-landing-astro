@@ -23,7 +23,7 @@ export function ClientLogos({ clientLogos }: ClientLogosProps) {
         style={{ background: "linear-gradient(to left, var(--color-section-light), transparent)" }}
       />
 
-      <div className="mb-5 text-center sm:mb-7">
+      <div className="animate-fade-in-up mb-5 text-center sm:mb-7">
         <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-400">
           Empresas que confían en nosotros
         </p>
@@ -43,7 +43,7 @@ export function ClientLogos({ clientLogos }: ClientLogosProps) {
               <img
                 src={client.imageUrl}
                 alt={client.alt}
-                className="max-h-9 w-auto object-contain grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100 sm:max-h-10"
+                className="max-h-9 w-auto object-contain grayscale opacity-50 transition-all duration-500 hover:grayscale-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.3)] sm:max-h-10"
               />
             </div>
           ))}

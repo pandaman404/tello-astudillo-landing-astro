@@ -8,6 +8,8 @@
     "phone1Href": "tel:+56948729314",
     "phone2": "+56 9 0000 0001",
     "phone2Href": "tel:+56900000001",
+    "phone3": "+56 9 0000 0002",
+    "phone3Href": "tel:+56900000002",
     "email": "rtc@tello-astudillo.cl",
     "whatsapp": "https://wa.me/56948729314",
     "whatsappMessage": "Hola Tello-Astudillo, necesito una cotización",
@@ -86,5 +88,287 @@
       "alt": "Certificación ISO 9000",
       "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,h_140,c_fit,dpr_auto/fl_preserve_transparency/v1778790392/iso9000_ygqyge.png"
     }
+  },
+  "info": {
+    "heroStats": [
+      {
+        "value": "+30",
+        "label": "Años de trayectoria"
+      },
+      {
+        "value": "+5000",
+        "label": "Piezas fabricadas al año"
+      },
+      {
+        "value": "+300",
+        "label": "Clientes a lo largo de todo el país"
+      },
+      {
+        "value": "100%",
+        "label": "Fabricación a medida"
+      }
+    ],
+    "about": {
+      "companyExperienceYears": 30
+    },
+    "services": [
+      {
+        "k": "01",
+        "title": "Diseño e ingeniería",
+        "items": [
+          "Levantamiento técnico",
+          "Diseño mecánico",
+          "Modelado CAD 2D y 3D",
+          "Desarrollo de planos de fabricación",
+          "Metrología"
+        ]
+      },
+      {
+        "k": "02",
+        "title": "Corte de materiales",
+        "items": [
+          "Corte láser",
+          "Corte por oxicorte",
+          "Corte por chorro de agua"
+        ]
+      },
+      {
+        "k": "03",
+        "title": "Mecanizado",
+        "items": [
+          "Torneado convencional",
+          "Torneado CNC",
+          "Fresado convencional",
+          "Fresado CNC",
+          "Taladrado",
+          "Cepillado",
+          "Rectificado"
+        ]
+      },
+      {
+        "k": "04",
+        "title": "Conformado y deformación",
+        "items": [
+          "Plegado de planchas",
+          "Curvado de tubos"
+        ]
+      },
+      {
+        "k": "05",
+        "title": "Soldadura y unión",
+        "items": [
+          "Soldadura MIG/MAG",
+          "Soldadura TIG",
+          "Soldadura de aluminio",
+          "Soldadura inoxidable",
+          "Punteo y armado"
+        ]
+      },
+      {
+        "k": "06",
+        "title": "Fabricación estructural",
+        "items": [
+          "Estructuras metálicas",
+          "Estanques",
+          "Piping",
+          "Plataformas y pasarelas",
+          "Soportes y bastidores"
+        ]
+      },
+      {
+        "k": "07",
+        "title": "Tratamientos",
+        "items": [
+          "Arenado",
+          "Granallado",
+          "Pintura industrial",
+          "Pintura electrostática",
+          "Galvanizado",
+          "Metalizado",
+          "Pulido",
+          "Recubrimientos anticorrosivos",
+          "Temple",
+          "Nitrurado profundo"
+        ]
+      },
+      {
+        "k": "08",
+        "title": "Montaje y ensamblaje",
+        "items": [
+          "Armado mecánico",
+          "Ensamble estructural",
+          "Montaje industrial",
+          "Integración de componentes",
+          "Ajustes mecánicos"
+        ]
+      },
+      {
+        "k": "09",
+        "title": "Mantención y reparación",
+        "items": [
+          "Mantención preventiva",
+          "Mantención correctiva",
+          "Reparación de componentes",
+          "Recuperación de piezas",
+          "Cambio de rodamientos",
+          "Reparación de ejes",
+          "Reparación de bombas y reductores"
+        ]
+      },
+      {
+        "k": "10",
+        "title": "Control de calidad",
+        "items": [
+          "Inspección visual",
+          "Líquidos penetrantes",
+          "Control dimensional",
+          "Trazabilidad de materiales",
+          "Certificación de soldadores"
+        ]
+      },
+      {
+        "k": "11",
+        "title": "Seguridad y gestión",
+        "items": [
+          "Prevención de riesgos",
+          "Gestión de calidad ISO",
+          "Gestión ambiental",
+          "Permisos de trabajo",
+          "Gestión documental",
+          "Planificación y control de producción"
+        ]
+      }
+    ],
+    "materials": [
+      {
+        "k": "01",
+        "title": "Aceros al carbono",
+        "items": [
+          "Acero A36",
+          "Acero SAE 1045",
+          "Acero estructural",
+          "Acero galvanizado"
+        ]
+      },
+      {
+        "k": "02",
+        "title": "Aceros inoxidables",
+        "items": [
+          "Inoxidable 304",
+          "Inoxidable 316",
+          "Inoxidable sanitario"
+        ]
+      },
+      {
+        "k": "03",
+        "title": "Aceros especiales",
+        "items": [
+          "SAE 4340",
+          "Acero herramienta D2",
+          "Acero para cementación"
+        ]
+      },
+      {
+        "k": "04",
+        "title": "Aluminio",
+        "items": [
+          "Aluminio",
+          "Duroaluminio",
+          "Perfiles de aluminio",
+          "Planchas diamantadas"
+        ]
+      },
+      {
+        "k": "05",
+        "title": "Cobres y aleaciones",
+        "items": [
+          "Cobre electrolítico",
+          "Bronce",
+          "Latón"
+        ]
+      },
+      {
+        "k": "06",
+        "title": "Fundiciones",
+        "items": [
+          "Fierro fundido"
+        ]
+      },
+      {
+        "k": "07",
+        "title": "Materiales plásticos industriales",
+        "items": [
+          "UHMW",
+          "Teflón",
+          "PVC industrial",
+          "Acetal",
+          "Policarbonato",
+          "Polietileno HDPE",
+          "Poliuretano"
+        ]
+      },
+      {
+        "k": "08",
+        "title": "Materiales para soldadura",
+        "items": [
+          "Consumibles esenciales",
+          "Electrodos revestidos",
+          "Alambre MIG",
+          "Varillas TIG",
+          "Gases industriales",
+          "Argón",
+          "CO₂",
+          "Mezclas Ar/CO₂",
+          "Oxígeno"
+        ]
+      },
+      {
+        "k": "09",
+        "title": "Materiales abrasivos y de acabado",
+        "items": [
+          "Discos de corte",
+          "Discos flap",
+          "Piedras de esmeril",
+          "Lijas",
+          "Arena para arenado"
+        ]
+      },
+      {
+        "k": "10",
+        "title": "Pinturas y recubrimientos",
+        "items": [
+          "Primer anticorrosivo",
+          "Epóxico industrial",
+          "Zincado en frío",
+          "Galvanizado"
+        ]
+      },
+      {
+        "k": "11",
+        "title": "Perfiles y formatos comerciales",
+        "items": [
+          "Perfiles estructurales",
+          "Perfil H",
+          "Perfil I",
+          "Canal U",
+          "Ángulo L",
+          "Perfil C",
+          "Tubo estructural",
+          "Perfil rectangular",
+          "Perfil cuadrado"
+        ]
+      },
+      {
+        "k": "12",
+        "title": "Elementos de fijación",
+        "items": [
+          "Pernos",
+          "Tuercas",
+          "Golillas",
+          "Remaches",
+          "Espárragos"
+        ]
+      }
+    ]
   }
 }
