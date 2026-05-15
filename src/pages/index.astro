@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
 import { Services } from "@/components/Services";
+import { Materials } from "@/components/Materials";
 import { getLandingPage } from "@/services/contentful";
 
 const landingPage = await getLandingPage();
@@ -33,6 +34,7 @@ const seo = siteConfig.seo;
     <ClientLogos client:load clientLogos={images.clientLogos} />
     <About client:load aboutImage={images.about} certImage={images.certification} />
     <Services client:load />
+    <Materials client:load />
     <Contact client:load />
     <Footer client:load siteConfig={siteConfig} />
   </body>
