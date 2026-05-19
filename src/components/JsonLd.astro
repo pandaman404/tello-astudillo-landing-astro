@@ -53,7 +53,9 @@ const schema = {
       ],
       "email": siteConfig.email,
       "hasMap": siteConfig.addressMapsUrl,
-      "sameAs": [],
+      ...(siteConfig.social && Object.values(siteConfig.social).some(Boolean)
+        ? { "sameAs": Object.values(siteConfig.social as Record<string,string>).filter(Boolean) }
+        : {}),
     },
     {
       "@type": "WebSite",

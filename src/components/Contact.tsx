@@ -74,7 +74,7 @@ export function Contact({ siteConfig = {} }: { siteConfig?: SiteConfig }) {
   }
 
   return (
-    <section id="contacto" className="relative overflow-hidden bg-background py-24 sm:py-32">
+    <section id="contacto" aria-labelledby="contacto-heading" className="relative scroll-mt-16 overflow-hidden bg-background py-16 sm:py-24 lg:py-32">
       {/* Grid overlay */}
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-50" />
 
@@ -82,7 +82,7 @@ export function Contact({ siteConfig = {} }: { siteConfig?: SiteConfig }) {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-6">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
 
           {/* ── Left: info ── */}
           <div className="scroll-reveal">
@@ -91,7 +91,7 @@ export function Contact({ siteConfig = {} }: { siteConfig?: SiteConfig }) {
               Contacto
             </div>
 
-            <h2 className="animate-fade-in-up delay-100 mt-4 font-heading text-4xl font-bold uppercase leading-[0.93] tracking-tight text-foreground sm:text-5xl">
+            <h2 id="contacto-heading" className="animate-fade-in-up delay-100 mt-4 font-heading text-3xl font-bold uppercase leading-[0.93] tracking-tight text-foreground sm:text-4xl sm:text-5xl">
               Hablemos de su
               <br />
               <span className="text-accent">proyecto industrial</span>
@@ -104,8 +104,6 @@ export function Contact({ siteConfig = {} }: { siteConfig?: SiteConfig }) {
 
             <div className="animate-fade-in-up delay-300 mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <ContactRow icon={Phone} label="Teléfono 1" value={siteConfig?.phone1 || ""} href={siteConfig?.phone1Href} />
-              <ContactRow icon={Phone} label="Teléfono 2" value={siteConfig?.phone2 || ""} href={siteConfig?.phone2Href} />
-              <ContactRow icon={Phone} label="Teléfono 3" value={siteConfig?.phone3 || ""} href={siteConfig?.phone3Href} />
               <ContactRow icon={MessageCircle} label="WhatsApp directo" value="Atención inmediata" href={siteConfig?.whatsapp} highlight />
               <ContactRow icon={Mail} label="Correo" value={siteConfig?.email || ""} href={`mailto:${siteConfig?.email}`} />
               <ContactRow icon={MapPin} label="Ubicación" value={siteConfig?.address || ""} href={siteConfig?.addressMapsUrl} />

@@ -21,14 +21,18 @@
     "social": {
       "linkedin": "#",
       "facebook": "#",
-      "instagram": "#"
+      "instagram": "https://www.instagram.com/maestranzatelloastudillo?igsh=YWJxdXV4bDA2eGJm"
     },
     "seo": {
       "title": "Maestranza Tello-Astudillo · Mecanizado CNC y Soldadura Industrial",
-      "description": "Fabricación de piezas, mecanizado CNC, soldadura inoxidable y mantenimiento industrial. Más de 30 años de trayectoria en Chile."
+      "description": "Maestranza en Santiago con más de 30 años. Fabricación de piezas, mecanizado CNC, soldadura TIG/MIG, inoxidable y mantenimiento industrial para procesos críticos en Chile."
     }
   },
   "images": {
+    "logo": {
+      "alt": "Logo Tello-Astudillo",
+      "imageUrl": "https://res.cloudinary.com/dcukxargr/image/upload/f_auto,q_auto:good,h_140,c_fit,dpr_auto/fl_preserve_transparency/v1779166106/logo-tello-astudillo-azul-corregido_urec2r.png"
+    },
     "hero": {
       "alt": "Planta industrial metalmecánica trabajando en fabricación industrial",
       "imageUrl": "https://res.cloudinary.com/diy1hapwt/image/upload/f_auto,q_auto:good,w_1920,c_limit,dpr_auto/v1778790337/hero-industrial_yacsme.jpg"
@@ -243,6 +247,7 @@
       {
         "k": "01",
         "title": "Aceros al carbono",
+        "icon": "Layers",
         "items": [
           "Acero A36",
           "Acero SAE 1045",
@@ -253,15 +258,13 @@
       {
         "k": "02",
         "title": "Aceros inoxidables",
-        "items": [
-          "Inoxidable 304",
-          "Inoxidable 316",
-          "Inoxidable sanitario"
-        ]
+        "icon": "ShieldCheck",
+        "items": ["Inoxidable 304", "Inoxidable 316", "Inoxidable sanitario"]
       },
       {
         "k": "03",
         "title": "Aceros especiales",
+        "icon": "Star",
         "items": [
           "SAE 4340",
           "Acero herramienta D2",
@@ -271,16 +274,13 @@
       {
         "k": "04",
         "title": "Aluminio",
-        "items": [
-          "Aluminio",
-          "Duroaluminio",
-          "Perfiles de aluminio",
-          "Planchas diamantadas"
-        ]
+        "icon": "Hexagon",
+        "items": ["Aluminio", "Duroaluminio", "Perfiles de aluminio", "Planchas diamantadas"]
       },
       {
         "k": "05",
         "title": "Cobres y aleaciones",
+        "icon": "Zap",
         "items": [
           "Cobre electrolítico",
           "Bronce",
@@ -290,13 +290,13 @@
       {
         "k": "06",
         "title": "Fundiciones",
-        "items": [
-          "Fierro fundido"
-        ]
+        "icon": "Flame",
+        "items": ["Fierro fundido"]
       },
       {
         "k": "07",
         "title": "Materiales plásticos industriales",
+        "icon": "FlaskConical",
         "items": [
           "UHMW",
           "Teflón",
@@ -310,6 +310,7 @@
       {
         "k": "08",
         "title": "Materiales para soldadura",
+        "icon": "Thermometer",
         "items": [
           "Consumibles esenciales",
           "Electrodos revestidos",
@@ -325,6 +326,7 @@
       {
         "k": "09",
         "title": "Materiales abrasivos y de acabado",
+        "icon": "Eraser",
         "items": [
           "Discos de corte",
           "Discos flap",
@@ -336,6 +338,7 @@
       {
         "k": "10",
         "title": "Pinturas y recubrimientos",
+        "icon": "PaintBucket",
         "items": [
           "Primer anticorrosivo",
           "Epóxico industrial",
@@ -346,6 +349,7 @@
       {
         "k": "11",
         "title": "Perfiles y formatos comerciales",
+        "icon": "Ruler",
         "items": [
           "Perfiles estructurales",
           "Perfil H",
@@ -361,6 +365,7 @@
       {
         "k": "12",
         "title": "Elementos de fijación",
+        "icon": "Wrench",
         "items": [
           "Pernos",
           "Tuercas",

@@ -32,11 +32,45 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
+    scroll-behavior: smooth;
+    /* iOS tap highlight */
+    -webkit-tap-highlight-color: transparent;
+    /* Prevent font size adjustment on orientation change (iOS) */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    /* Prevent horizontal overflow on all browsers */
+    overflow-x: hidden;
+    /* iOS momentum scrolling */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   h1, h2, h3, h4, h5 {
     font-family: var(--font-heading);
     font-weight: 700;
+  }
+
+  /* Improve touch targets globally */
+  button, a {
+    touch-action: manipulation;
+  }
+}
+
+/* Safari backdrop-filter fallback — explicit -webkit- prefix */
+@layer base {
+  .backdrop-blur-sm,
+  .backdrop-blur,
+  .backdrop-blur-md,
+  .backdrop-blur-lg {
+    -webkit-backdrop-filter: var(--tw-backdrop-blur, blur(0)) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, );
   }
 }
 
@@ -65,6 +99,14 @@
 /* Cut top-right corner shape for CTAs */
 @utility clip-corner {
   clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  /* Safari needs -webkit- for older versions */
+  -webkit-clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+
+/* Hero min-height with svh fallback for older iOS Safari */
+@utility hero-min-h {
+  min-height: 80vh;   /* fallback for Safari < 15.4 */
+  min-height: 80svh;  /* modern: safe viewport height (excludes browser chrome) */
 }
 
 /* Marquee scroll animation */

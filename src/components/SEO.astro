@@ -18,6 +18,11 @@ const {
 } = Astro.props;
 
 const siteName = "Maestranza Tello-Astudillo";
+
+// Generate OG-optimized image: 1200×630 crop via Cloudinary if it's a Cloudinary URL
+const ogImageFormatted = ogImage?.includes("res.cloudinary.com")
+  ? ogImage.replace(/\/upload\/[^/]+\//, "/upload/w_1200,h_630,c_fill,g_center,f_jpg,q_auto:good/")
+  : ogImage;
 ---
 
 <!-- Primary -->
@@ -34,13 +39,13 @@ const siteName = "Maestranza Tello-Astudillo";
 <meta property="og:url" content={canonical} />
 <meta property="og:site_name" content={siteName} />
 <meta property="og:locale" content="es_CL" />
-{ogImage && <meta property="og:image" content={ogImage} />}
-{ogImage && <meta property="og:image:width" content="1200" />}
-{ogImage && <meta property="og:image:height" content="630" />}
-{ogImage && <meta property="og:image:alt" content={title} />}
+{ogImageFormatted && <meta property="og:image" content={ogImageFormatted} />}
+{ogImageFormatted && <meta property="og:image:width" content="1200" />}
+{ogImageFormatted && <meta property="og:image:height" content="630" />}
+{ogImageFormatted && <meta property="og:image:alt" content="Maestranza Tello-Astudillo — Mecanizado CNC y soldadura industrial en Chile" />}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-{ogImage && <meta name="twitter:image" content={ogImage} />}
+{ogImageFormatted && <meta name="twitter:image" content={ogImageFormatted} />}

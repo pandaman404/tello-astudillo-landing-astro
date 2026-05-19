@@ -33,7 +33,10 @@ export function Hero({ heroImage, siteConfig, stats }: HeroProps) {
     : "#";
 
   return (
-    <section className="relative isolate overflow-hidden bg-background pt-20">
+    <section
+      aria-labelledby="hero-heading"
+      className="relative isolate overflow-hidden bg-background pt-20"
+    >
       {/* Background image — LCP element: eager + high priority */}
       <div className="absolute inset-0 -z-10">
         <img
@@ -54,15 +57,16 @@ export function Hero({ heroImage, siteConfig, stats }: HeroProps) {
       <div className="absolute inset-0 -z-10 bg-grid" />
 
       {/* Main content grid */}
-      <div className="mx-auto grid min-h-[92vh] max-w-7xl grid-cols-12 items-center gap-6 px-6 py-24">
+      {/* min-h fallback: 80vh for older Safari, 80svh (safe viewport) for modern browsers */}
+      <div className="mx-auto grid hero-min-h max-w-7xl grid-cols-12 items-center gap-6 px-6 py-20 sm:min-h-[92vh] sm:py-24">
         {/* Left: headline + CTAs */}
         <div className="col-span-12 lg:col-span-8">
-          <div className="animate-fade-in-up mb-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          <div className="animate-fade-in-up mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-accent sm:mb-8">
             <span className="h-px w-10 bg-accent" />
             Desde 1988 · Industria nacional chilena
           </div>
 
-          <h1 className="animate-fade-in-up delay-100 font-heading text-[clamp(3.25rem,9vw,5.5rem)] leading-[0.88] tracking-tight text-foreground">
+          <h1 id="hero-heading" className="animate-fade-in-up delay-100 font-heading text-[clamp(2.75rem,8vw,5.5rem)] leading-[0.9] tracking-tight text-foreground sm:leading-[0.88]">
             SOCIOS ESTRATÉGICOS
             <br />
             <span className="text-stroke">EN MANTENIMIENTO</span>
@@ -70,14 +74,14 @@ export function Hero({ heroImage, siteConfig, stats }: HeroProps) {
             <span className="text-accent">Y FABRICACIÓN INDUSTRIAL.</span>
           </h1>
 
-          <p className="animate-fade-in-up delay-200 mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          <p className="animate-fade-in-up delay-200 mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-8 md:text-base lg:text-lg">
             Más de 30 años fabricando repuestos industriales, realizando mecanizado CNC, soldadura inoxidable y mantenimiento industrial para procesos críticos.
           </p>
 
-          <div className="animate-fade-in-up delay-300 mt-10 flex flex-wrap items-center gap-4">
+          <div className="animate-fade-in-up delay-300 mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
             <a
               href="#contacto"
-              className="btn-sweep group inline-flex items-center gap-3 clip-corner bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-blue transition-all hover:brightness-125"
+              className="btn-sweep group inline-flex items-center justify-center gap-3 clip-corner bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-blue transition-all hover:brightness-125 sm:w-auto"
             >
               Solicitar Cotización
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -87,7 +91,7 @@ export function Hero({ heroImage, siteConfig, stats }: HeroProps) {
               href={whatsappHref}
               target="_blank"
               rel="noreferrer"
-              className="hover-lift inline-flex items-center gap-3 border border-accent/50 bg-accent/10 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-accent backdrop-blur-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+              className="hover-lift inline-flex items-center justify-center gap-3 border border-accent/50 bg-accent/10 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-accent backdrop-blur-sm transition-colors hover:bg-accent hover:text-accent-foreground sm:w-auto"
             >
               <MessageCircle className="h-4 w-4" />
               WhatsApp 24/7

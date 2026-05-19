@@ -8,7 +8,11 @@ const links = [
   { href: "#contacto", label: "Contacto" },
 ];
 
-export function Navbar() {
+interface NavbarProps {
+  logo?: { imageUrl?: string; alt?: string };
+}
+
+export function Navbar({ logo }: NavbarProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -19,6 +23,16 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    // Lock body scroll when mobile menu is open
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   // Close menu on outside click
   useEffect(() => {
@@ -43,18 +57,13 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
-        <a href="#top" className="flex items-center gap-3 group">
-          <span className="grid h-9 w-9 place-items-center clip-corner bg-primary font-display text-lg font-bold text-primary-foreground transition-all group-hover:brightness-125">
-            TA
-          </span>
-          <div className="hidden sm:block leading-tight">
-            <div className="font-display text-sm font-semibold uppercase tracking-wider text-foreground">
-              Tello-Astudillo
-            </div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
-              Metalmecánica · Ltda.
-            </div>
-          </div>
+        <a href="#top" className="flex items-center group">
+          <img
+            src={logo?.imageUrl}
+            alt={logo?.alt ?? "Tello-Astudillo"}
+            // height={36}
+            className="h-15 w-auto object-contain transition-opacity group-hover:opacity-80"
+          />
         </a>
 
         {/* Desktop nav */}
@@ -79,11 +88,11 @@ export function Navbar() {
           Cotizar ahora
         </a>
 
-        {/* Mobile toggle */}
+        {/* Mobile toggle — min 44×44px touch target */}
         <button
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
-          className="rounded-sm p-1 text-foreground transition-colors hover:text-accent lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-sm text-foreground transition-colors hover:text-accent lg:hidden"
           onClick={() => setOpen((o) => !o)}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -96,7 +105,7 @@ export function Navbar() {
           open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="border-t border-border bg-background/95 backdrop-blur-md">
+        <div className="relative overflow-hidden border-t border-border bg-background/95 backdrop-blur-md">
           {/* Grid overlay for consistency with hero */}
           <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
           <div className="relative flex flex-col gap-1 px-6 py-4">

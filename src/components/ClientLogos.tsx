@@ -43,6 +43,8 @@ export function ClientLogos({ clientLogos }: ClientLogosProps) {
               <img
                 src={client.imageUrl}
                 alt={client.alt}
+                loading="lazy"
+                decoding="async"
                 className="max-h-9 w-auto object-contain grayscale opacity-50 transition-all duration-500 hover:grayscale-0 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.3)] sm:max-h-10"
               />
             </div>

@@ -22,16 +22,19 @@ const services = landingPage.info?.services || [];
 const materials = landingPage.info?.materials || [];
 
 const ogImage = images?.hero?.imageUrl;
+const logo = images?.logo;
 ---
 
-<html lang="es">
+<html lang="es-CL">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=no" />
     <meta name="generator" content={Astro.generator} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -51,7 +54,7 @@ const ogImage = images?.hero?.imageUrl;
 
   <body id="top">
     <!-- Navbar: needs hydration — scroll state + mobile menu toggle -->
-    <Navbar client:load />
+    <Navbar client:load logo={logo} />
 
     <main>
       <!-- Hero: fully static, no interactivity -->
@@ -74,7 +77,7 @@ const ogImage = images?.hero?.imageUrl;
     </main>
 
     <!-- Footer: fully static, no interactivity -->
-    <Footer siteConfig={siteConfig} />
+    <Footer siteConfig={siteConfig} logo={logo} />
 
     <!-- Scroll reveal: lightweight external module -->
     <script>

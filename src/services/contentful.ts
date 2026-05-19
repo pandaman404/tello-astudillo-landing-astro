@@ -15,12 +15,12 @@ export async function getLandingPage(): Promise<any> {
 
   try {   
     const response = await contentfulClient.getEntries({
-      content_type: "landingContent",
+      content_type: "landing-content",
       limit: 1,
     });
 
     if (!response.items || response.items.length === 0) {
-      console.log(`⚠️ No se encontraron entradas de "landingContent" en Contentful, usando datos locales`);
+      console.log(`⚠️ No se encontraron entradas de "landing-content" en Contentful, usando datos locales`);
       return siteLocal;
     }
 

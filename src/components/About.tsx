@@ -25,7 +25,8 @@ export function About({ aboutImage, aboutInfo, certImage }: AboutProps) {
     <>
       <section
         id="empresa"
-        className="relative py-20 sm:py-28"
+        aria-labelledby="empresa-heading"
+        className="relative scroll-mt-16 py-20 sm:py-28"
         style={{ backgroundColor: "var(--color-section-light)" }}
       >
         <div className="pointer-events-none absolute inset-0 bg-grid-light opacity-40" />
@@ -33,31 +34,31 @@ export function About({ aboutImage, aboutInfo, certImage }: AboutProps) {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
         <div className="relative mx-auto max-w-7xl px-6">
-          <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-20">
 
             {/* ── Left: image ── */}
             <div className="scroll-reveal relative">
               {/* Accent slab behind image */}
-              <div className="absolute -inset-3 -z-10 border border-primary/10 bg-primary/5" />
+              <div className="absolute -inset-2 -z-10 border border-primary/10 bg-primary/5 sm:-inset-3" />
               <img
                 src={engineerSrc}
                 alt={engineerAlt}
                 loading="lazy"
                 width={1024}
                 height={1024}
-                className="aspect-[4/5] w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                className="aspect-[16/10] w-full object-cover transition-transform duration-500 hover:scale-[1.02] sm:aspect-[4/3] lg:aspect-[4/5]"
               />
               {/* Badge 30+ */}
-              <div className="animate-fade-in-up delay-300 absolute -bottom-5 -right-5 hidden border border-slate-200 bg-white px-6 py-4 shadow-md sm:block">
-                <div className="font-heading text-5xl font-bold leading-none text-slate-900">{aboutInfo?.companyExperienceYears ?? 30}+</div>
-                <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-slate-400">
+              <div className="animate-fade-in-up delay-300 absolute -bottom-4 -right-2 border border-slate-200 bg-white px-4 py-3 shadow-md sm:-bottom-5 sm:-right-5 sm:px-6 sm:py-4">
+                <div className="font-heading text-4xl font-bold leading-none text-slate-900 sm:text-5xl">{aboutInfo?.companyExperienceYears ?? 30}+</div>
+                <div className="mt-1 text-[9px] uppercase tracking-[0.2em] text-slate-400 sm:text-[10px]">
                   años en terreno
                 </div>
               </div>
             </div>
 
             {/* ── Right: content ── */}
-            <div className="scroll-reveal flex flex-col gap-0 lg:pl-2">
+            <div className="scroll-reveal flex flex-col gap-0 pt-6 lg:pl-2 lg:pt-0">
 
               {/* Eyebrow */}
               <div className="animate-fade-in-up flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
@@ -66,7 +67,7 @@ export function About({ aboutImage, aboutInfo, certImage }: AboutProps) {
               </div>
 
               {/* Headline */}
-              <h2 className="animate-fade-in-up delay-100 mt-4 font-heading text-4xl font-bold uppercase leading-[0.95] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem]">
+              <h2 id="empresa-heading" className="animate-fade-in-up delay-100 mt-4 font-heading text-3xl font-bold uppercase leading-[0.95] tracking-tight text-slate-900 sm:text-4xl sm:text-5xl lg:text-[3.25rem]">
                 Tres décadas impulsando
                 <br />
                 <span className="text-primary">la industria chilena</span>
@@ -116,10 +117,7 @@ export function About({ aboutImage, aboutInfo, certImage }: AboutProps) {
                 <div className="mt-5 flex flex-wrap gap-2.5">
                   <button
                     type="button"
-                    onClick={() => {
-                      console.log("🔘 Botón certificación presionado");
-                      setActivePdf({ url: certUrl, title: "Certificación ISO 9001:2015" });
-                    }}
+                    onClick={() => setActivePdf({ url: certUrl, title: "Certificación ISO 9001:2015" })}
                     className="inline-flex items-center gap-2 border border-primary px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-primary transition-all hover:bg-primary hover:text-white"
                   >
                     <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={1.6} />
@@ -127,10 +125,7 @@ export function About({ aboutImage, aboutInfo, certImage }: AboutProps) {
                   </button>
                   <button
                     type="button"
-                    onClick={() => {
-                      console.log("🔘 Botón política presionado");
-                      setActivePdf({ url: pdfUrl, title: "Política de Calidad · ISO 9001:2015" });
-                    }}
+                    onClick={() => setActivePdf({ url: pdfUrl, title: "Política de Calidad · ISO 9001:2015" })}
                     className="inline-flex items-center gap-2 border border-slate-200 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-500 transition-all hover:border-primary hover:text-primary"
                   >
                     <FileText className="h-3.5 w-3.5 shrink-0" strokeWidth={1.6} />
