@@ -154,6 +154,18 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
             {siteConfig?.tagline}
           </p>
         </div>
+
+        <p className="mt-5 text-center text-xs text-muted-foreground/50">
+          Desarrollado por{" "}
+          <a
+            href="https://github.com/pandaman404"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="font-medium text-foreground transition-opacity hover:opacity-70"
+          >
+            Rodrigo Valenzuela
+          </a>
+        </p>
       </div>
     </footer>
   );
