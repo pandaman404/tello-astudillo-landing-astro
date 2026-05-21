@@ -15,7 +15,7 @@ export function HeroStats({ stats }: { stats: Stat[] }) {
           <div className="font-display text-3xl leading-none text-white transition-transform group-hover:scale-105 origin-left sm:text-4xl">
             {stat.value}
           </div>
-          <div className="mt-1.5 text-[9px] font-semibold uppercase tracking-widest text-muted-foreground transition-colors group-hover:text-foreground/70 sm:mt-2 sm:text-[10px]">
+          <div className="mt-1.5 text-[9px] font-semibold uppercase tracking-widest text-foreground/90 transition-colors group-hover:text-foreground sm:mt-2 sm:text-[10px]">
             {stat.label}
           </div>
 

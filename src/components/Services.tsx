@@ -27,7 +27,7 @@ export function Services({ services }: { services?: Group[] }) {
               <span className="text-accent">METALMECÁNICAS INTEGRALES.</span>
             </h2>
           </div>
-          <p className="col-span-12 text-sm leading-relaxed text-muted-foreground lg:col-span-5 lg:max-w-sm">
+          <p className="col-span-12 text-sm leading-relaxed text-foreground lg:col-span-5 lg:max-w-sm">
             Mecanizado CNC, soldadura TIG/MIG, fabricación estructural, tratamientos superficiales y mantención industrial. Más de 60 procesos especializados para proyectos de ingeniería, industria alimentaria, minería y construcción en Chile.
           </p>
         </div>
@@ -62,7 +62,7 @@ export function Services({ services }: { services?: Group[] }) {
                     <span className="flex items-center gap-4 min-w-0">
                       <span
                         className={`text-mono text-[11px] tabular-nums shrink-0 transition-colors duration-200 ${
-                          isActive ? "text-accent" : "text-muted-foreground/50 group-hover:text-muted-foreground"
+                          isActive ? "text-accent" : "text-foreground/90 group-hover:text-foreground"
                         }`}
                         aria-hidden="true"
                       >
@@ -70,7 +70,7 @@ export function Services({ services }: { services?: Group[] }) {
                       </span>
                       <span
                         className={`text-display text-[15px] tracking-wide truncate transition-colors duration-200 ${
-                          isActive ? "text-foreground" : "text-foreground/55 group-hover:text-foreground/85"
+                          isActive ? "text-foreground" : "text-foreground/85 group-hover:text-foreground"
                         }`}
                       >
                         {g.title}
@@ -105,7 +105,7 @@ export function Services({ services }: { services?: Group[] }) {
                   <div className="mb-7 flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.25em]" aria-hidden="true">
                     <span className="text-accent font-semibold">[ {g.k} ]</span>
                     <span className="h-px flex-1 bg-border/60" />
-                    <span className="text-muted-foreground/70">{g.items.length} procesos</span>
+                    <span className="text-foreground/92">{g.items.length} procesos</span>
                   </div>
 
                   <h3 className="text-display text-2xl tracking-wide text-foreground md:text-[2rem]">
@@ -116,7 +116,7 @@ export function Services({ services }: { services?: Group[] }) {
                     {g.items.map((item, idx) => (
                       <li
                         key={item}
-                        className={`group flex items-center gap-3 border-l-2 border-l-accent/40 bg-background/35 px-4 py-3 text-[13px] text-foreground/75 transition-all duration-150 hover:border-l-accent/80 hover:bg-background/60 hover:text-foreground/95 hover:-translate-y-0.5 ${isVisible ? "animate-fade-in" : ""}`}
+                        className={`group flex items-center gap-3 border-l-2 border-l-accent/40 bg-background/35 px-4 py-3 text-[13px] text-foreground/92 transition-all duration-150 hover:border-l-accent/80 hover:bg-background/60 hover:text-foreground hover:-translate-y-0.5 ${isVisible ? "animate-fade-in" : ""}`}
                         style={isVisible ? { animationDelay: `${idx * 30}ms` } : undefined}
                       >
                         <span className="h-px w-3 shrink-0 bg-accent/50 transition-all duration-200 group-hover:w-4 group-hover:bg-accent/80" aria-hidden="true" />
@@ -162,7 +162,7 @@ export function Services({ services }: { services?: Group[] }) {
                     <span className="flex items-center gap-3 min-w-0">
                       <span
                         className={`text-[11px] font-mono tabular-nums shrink-0 transition-colors ${
-                          isOpen ? "text-accent" : "text-muted-foreground/60"
+                          isOpen ? "text-accent" : "text-foreground/90"
                         }`}
                         aria-hidden="true"
                       >
@@ -170,7 +170,7 @@ export function Services({ services }: { services?: Group[] }) {
                       </span>
                       <span
                         className={`text-display text-[15px] tracking-wide truncate transition-colors ${
-                          isOpen ? "text-foreground" : "text-foreground/70"
+                          isOpen ? "text-foreground" : "text-foreground/88"
                         }`}
                       >
                         {g.title}
@@ -201,7 +201,7 @@ export function Services({ services }: { services?: Group[] }) {
                     aria-label={g.title}
                   >
                     {g.items.map((item) => (
-                      <li key={item} className="flex items-center gap-3 py-2.5 text-[13px] text-foreground/75">
+                      <li key={item} className="flex items-center gap-3 py-2.5 text-[13px] text-foreground/92">
                         <span className="h-px w-3 shrink-0 bg-accent/60" aria-hidden="true" />
                         {item}
                       </li>

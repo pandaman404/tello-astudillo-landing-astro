@@ -55,24 +55,23 @@ export function Navbar({ logo }: NavbarProps) {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+      <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between px-5 py-3 sm:min-h-24 sm:px-6 sm:py-4 lg:min-h-28 lg:px-8 lg:py-5">
         {/* Logo */}
         <a href="#top" className="flex items-center group">
           <img
             src={logo?.imageUrl}
             alt={logo?.alt ?? "Tello-Astudillo"}
-            // height={36}
-            className="h-15 w-auto object-contain transition-opacity group-hover:opacity-80"
+            className="h-[54px] w-auto object-contain transition-opacity group-hover:opacity-80 sm:h-[62px] lg:h-[72px]"
           />
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-7 lg:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="relative text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground
+              className="relative text-sm font-medium uppercase tracking-wider text-foreground/90 transition-colors hover:text-foreground
                 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all hover:after:w-full"
             >
               {l.label}
@@ -83,7 +82,7 @@ export function Navbar({ logo }: NavbarProps) {
         {/* Desktop CTA */}
         <a
           href="#contacto"
-          className="hidden lg:inline-flex items-center clip-corner bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-blue transition-all hover:brightness-125"
+          className="hidden lg:inline-flex items-center clip-corner bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-blue transition-all hover:brightness-125"
         >
           Cotizar ahora
         </a>
@@ -108,13 +107,13 @@ export function Navbar({ logo }: NavbarProps) {
         <div className="relative overflow-hidden border-t border-border bg-background/95 backdrop-blur-md">
           {/* Grid overlay for consistency with hero */}
           <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
-          <div className="relative flex flex-col gap-1 px-6 py-4">
+          <div className="relative flex flex-col gap-1 px-5 py-4 sm:px-6">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-border/50 py-3 text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground last:border-0"
+                className="border-b border-border/50 py-3 text-sm font-medium uppercase tracking-wider text-foreground/90 transition-colors hover:text-foreground last:border-0"
               >
                 {l.label}
               </a>

@@ -97,13 +97,13 @@ export function Contact({ siteConfig = {} }: { siteConfig?: SiteConfig }) {
               <span className="text-accent">proyecto industrial</span>
             </h2>
 
-            <p className="animate-fade-in-up delay-200 mt-6 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+            <p className="animate-fade-in-up delay-200 mt-6 max-w-md text-[15px] leading-relaxed text-foreground">
               Cotice fabricación, mantenciones o atención de emergencia.
               Respondemos en horas hábiles, todos los días.
             </p>
 
             <div className="animate-fade-in-up delay-300 mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <ContactRow icon={Phone} label="Teléfono 1" value={siteConfig?.phone1 || ""} href={siteConfig?.phone1Href} />
+              <ContactRow icon={Phone} label="Teléfono" value={siteConfig?.phone1 || ""} href={siteConfig?.phone1Href} />
               <ContactRow icon={MessageCircle} label="WhatsApp directo" value="Atención inmediata" href={siteConfig?.whatsapp} highlight />
               <ContactRow icon={Mail} label="Correo" value={siteConfig?.email || ""} href={`mailto:${siteConfig?.email}`} />
               <ContactRow icon={MapPin} label="Ubicación" value={siteConfig?.address || ""} href={siteConfig?.addressMapsUrl} />
@@ -119,7 +119,7 @@ export function Contact({ siteConfig = {} }: { siteConfig?: SiteConfig }) {
             <div className="mb-7 flex items-center gap-3 text-[11px] uppercase tracking-[0.25em]">
               <span className="font-semibold text-accent">[ SOLICITUD DE COTIZACIÓN ]</span>
               <span className="h-px flex-1 bg-border/60" />
-              <span className="text-muted-foreground/50">Campos requeridos *</span>
+              <span className="text-foreground/92">Campos requeridos *</span>
             </div>
 
             {/* Honeypot — oculto para humanos, visible para bots */}
@@ -140,14 +140,14 @@ export function Contact({ siteConfig = {} }: { siteConfig?: SiteConfig }) {
             </div>
 
             <div className="mt-5">
-              <label className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-foreground/95">
                 Mensaje *
               </label>
               <textarea
                 name="message"
                 rows={5}
                 maxLength={2000}
-                className="mt-2 w-full resize-none border border-border/70 bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:border-accent focus:outline-none transition-colors"
+                className="mt-2 w-full resize-none border border-border/70 bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-foreground/80 focus:border-accent focus:outline-none transition-colors"
                 placeholder="Describa la pieza, proceso o requerimiento..."
               />
               {errors.message && (
@@ -231,7 +231,7 @@ function ContactRow({
         />
       </div>
       <div>
-        <div className="text-[11px] uppercase tracking-widest text-muted-foreground/60">
+        <div className="text-[11px] uppercase tracking-widest text-foreground/92">
           {label}
         </div>
         <div
@@ -267,14 +267,14 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+      <label className="block text-xs font-semibold uppercase tracking-wider text-foreground/95">
         {label}
       </label>
       <input
         name={name}
         type={type}
         maxLength={255}
-        className="mt-2 w-full border border-border/70 bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:border-accent focus:outline-none transition-colors"
+        className="mt-2 w-full border border-border/70 bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-foreground/80 focus:border-accent focus:outline-none transition-colors"
       />
       {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
     </div>

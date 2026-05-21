@@ -1,4 +1,4 @@
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { HeroStats } from "./HeroStats";
 
 interface SiteConfig {
@@ -31,6 +31,7 @@ export function Hero({ heroImage, siteConfig, stats }: HeroProps) {
   const whatsappHref = siteConfig?.whatsapp
     ? `${siteConfig.whatsapp}?text=${encodeURIComponent(siteConfig.whatsappMessage ?? "")}`
     : "#";
+  const instagramHref = siteConfig?.social?.instagram ?? siteConfig?.instagram ?? "#";
 
   return (
     <section
@@ -74,7 +75,7 @@ export function Hero({ heroImage, siteConfig, stats }: HeroProps) {
             <span className="text-accent">Y FABRICACIÓN INDUSTRIAL.</span>
           </h1>
 
-          <p className="animate-fade-in-up delay-200 mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-8 md:text-base lg:text-lg">
+          <p className="animate-fade-in-up delay-200 mt-6 max-w-xl text-sm leading-relaxed text-foreground sm:mt-8 md:text-base lg:text-lg">
             Más de 30 años fabricando repuestos industriales, realizando mecanizado CNC, soldadura inoxidable y mantenimiento industrial para procesos críticos.
           </p>
 
@@ -93,8 +94,24 @@ export function Hero({ heroImage, siteConfig, stats }: HeroProps) {
               rel="noreferrer"
               className="hover-lift inline-flex items-center justify-center gap-3 border border-accent/50 bg-accent/10 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-accent backdrop-blur-sm transition-colors hover:bg-accent hover:text-accent-foreground sm:w-auto"
             >
-              <MessageCircle className="h-4 w-4" />
-              WhatsApp 24/7
+              <svg viewBox="0 0 16 16" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+                <path d="M13.601 2.326A7.854 7.854 0 0 0 8.015 0C3.637 0 .076 3.562.076 7.939c0 1.4.366 2.767 1.062 3.97L0 16l4.213-1.106a7.9 7.9 0 0 0 3.801.97h.004c4.377 0 7.938-3.562 7.938-7.939a7.88 7.88 0 0 0-2.355-5.599ZM8.018 14.54h-.003a6.6 6.6 0 0 1-3.359-.92l-.241-.144-2.5.656.667-2.438-.156-.25a6.59 6.59 0 0 1-1.014-3.505c0-3.636 2.958-6.594 6.594-6.594a6.55 6.55 0 0 1 4.683 1.944 6.55 6.55 0 0 1 1.936 4.673c0 3.636-2.958 6.594-6.594 6.594Zm3.615-4.947c-.198-.099-1.173-.579-1.355-.645s-.314-.099-.446.099-.512.644-.628.777-.231.149-.429.05c-.198-.099-.835-.308-1.591-.982-.588-.525-.985-1.173-1.1-1.371s-.013-.305.086-.403c.09-.09.198-.231.297-.347.099-.116.132-.198.198-.33s.033-.248-.017-.347-.446-1.074-.611-1.471c-.161-.386-.325-.334-.446-.34l-.38-.007a.73.73 0 0 0-.529.248c-.182.198-.694.678-.694 1.652s.71 1.917.81 2.05c.099.132 1.398 2.136 3.387 2.995.473.204.842.326 1.13.417.475.151.907.13 1.248.079.381-.057 1.173-.479 1.339-.942.165-.462.165-.859.116-.942-.05-.083-.182-.132-.38-.231Z" />
+              </svg>
+              WhatsApp
+            </a>
+
+            <a
+              href={instagramHref}
+              target="_blank"
+              rel="noreferrer"
+              className="hover-lift inline-flex items-center justify-center gap-3 border border-primary/50 bg-primary/10 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-accent backdrop-blur-sm transition-colors hover:bg-primary/20 hover:text-foreground sm:w-auto"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+              Instagram
             </a>
           </div>
         </div>

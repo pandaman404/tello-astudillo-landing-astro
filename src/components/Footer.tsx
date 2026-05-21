@@ -13,7 +13,7 @@ interface FooterProps {
 export function Footer({ siteConfig = {}, logo }: FooterProps) {
 
   return (
-    <footer className="relative border-t border-border bg-card text-muted-foreground">
+    <footer className="relative border-t border-border bg-card text-foreground/95">
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-30" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-10 sm:py-16">
@@ -32,7 +32,7 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
               />
             </a>
 
-            <p className="mt-1 max-w-sm text-sm leading-relaxed">
+            <p className="mt-1 max-w-sm text-sm leading-relaxed ">
               Maestranza especializada en fabricación CNC, soldadura inoxidable
               y mantenimiento industrial para procesos críticos en todo Chile.
             </p>
@@ -44,7 +44,7 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
                   aria-label="Instagram"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="grid h-9 w-9 place-items-center border border-border/70 text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+                  className="grid h-9 w-9 place-items-center border border-border/70 text-foreground/95 transition-colors hover:border-accent hover:text-accent"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -104,15 +104,16 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
                   {siteConfig?.address}
                 </a>
               </li>
-              <li>
-                <span className="inline-flex items-center gap-2 text-accent font-semibold uppercase tracking-wider text-xs">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-50" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-                  </span>
-                  {siteConfig?.emergencyBadge}
-                </span>
-              </li>
+              {Array.isArray(siteConfig?.businessHours) && siteConfig.businessHours.length > 0 && (
+                <li className="pt-1">
+                  <p className="mb-1 text-[11px] uppercase tracking-[0.2em] text-foreground/80">Horario</p>
+                  <div className="space-y-1 text-foreground/80">
+                    {siteConfig.businessHours.map((line: string) => (
+                      <p key={line}>{line}</p>
+                    ))}
+                  </div>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -120,7 +121,7 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
         {/* ── Google Maps embed ── */}
         <div className="mt-8 overflow-hidden border border-border/60 sm:mt-12">
           <div className="flex items-center justify-between border-b border-border/60 px-4 py-2.5">
-            <span className="flex min-w-0 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground/60">
+            <span className="flex min-w-0 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-foreground/92">
               <span className="h-px w-4 shrink-0 bg-accent/50" />
               <span className="truncate">{siteConfig?.address}</span>
             </span>
@@ -147,15 +148,15 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
 
         {/* ── Bottom bar ── */}
         <div className="mt-10 flex flex-col gap-3 border-t border-border/60 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-muted-foreground/50">
+          <p className="text-xs text-foreground/90">
             © {new Date().getFullYear()} Metalmecánica Tello-Astudillo Asociados Ltda. Todos los derechos reservados.
           </p>
-          <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground/40">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-foreground/85">
             {siteConfig?.tagline}
           </p>
         </div>
 
-        <p className="mt-5 text-center text-xs text-muted-foreground/50">
+        <p className="mt-5 text-center text-xs text-foreground/80">
           Desarrollado por{" "}
           <a
             href="https://github.com/pandaman404"
