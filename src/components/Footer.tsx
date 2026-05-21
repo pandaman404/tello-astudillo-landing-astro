@@ -16,28 +16,28 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
     <footer className="relative border-t border-border bg-card text-foreground/95">
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-30" />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-10 sm:py-16">
+      <div className="relative mx-auto max-w-7xl px-6 py-10 sm:py-16 md:px-8 md:py-14 lg:px-6 lg:py-16">
 
         {/* ── Main grid ── */}
-        <div className="grid gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-12">
+        <div className="grid gap-8 md:grid-cols-12 md:gap-x-8 md:gap-y-10 lg:gap-x-12">
 
           {/* Brand */}
-          <div>
+          <div className="md:col-span-5 lg:col-span-4">
             <a href="#top" className="group inline-flex items-center">
               <img
                 src={logo?.imageUrl}
                 alt={logo?.alt ?? "Tello-Astudillo"}
                 height={48}
-                className="h-20 w-auto object-contain transition-opacity group-hover:opacity-80"
+                className="h-20 w-auto object-contain transition-opacity group-hover:opacity-80 md:h-24 lg:h-20"
               />
             </a>
 
-            <p className="mt-1 max-w-sm text-sm leading-relaxed ">
+            <p className="mt-2 max-w-sm text-sm leading-relaxed md:mt-3 md:max-w-md md:text-[15px]">
               Maestranza especializada en fabricación CNC, soldadura inoxidable
               y mantenimiento industrial para procesos críticos en todo Chile.
             </p>
 
-            <div className="mt-6 flex gap-2">
+            <div className="mt-6 flex gap-2 md:mt-7">
               {siteConfig.social?.instagram && (
                 <a
                   href={siteConfig.social?.instagram}
@@ -57,12 +57,12 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
           </div>
 
           {/* Navigation */}
-          <div>
+          <div className="md:col-span-3 lg:col-span-3">
             <div className="mb-5 flex items-center gap-2 text-[11px] uppercase tracking-[0.25em]">
               <span className="h-px w-5 bg-accent" />
               <span className="font-semibold text-accent">Navegación</span>
             </div>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3 md:space-y-3.5">
               {NAV_LINKS.map(({ href, label }) => (
                 <li key={href}>
                   <a
@@ -78,12 +78,12 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="md:col-span-4 lg:col-span-5">
             <div className="mb-5 flex items-center gap-2 text-[11px] uppercase tracking-[0.25em]">
               <span className="h-px w-5 bg-accent" />
               <span className="font-semibold text-accent">Contacto</span>
             </div>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3.5 text-sm md:max-w-md md:space-y-4 md:text-[15px]">
               <li>
                 <a href={siteConfig?.phone1Href} className="transition-colors hover:text-foreground">
                   {siteConfig?.phone1}
@@ -119,8 +119,8 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
         </div>
 
         {/* ── Google Maps embed ── */}
-        <div className="mt-8 overflow-hidden border border-border/60 sm:mt-12">
-          <div className="flex items-center justify-between border-b border-border/60 px-4 py-2.5">
+        <div className="mt-8 overflow-hidden border border-border/60 sm:mt-12 md:mt-14">
+          <div className="flex flex-col items-start gap-2 border-b border-border/60 px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between md:px-5 md:py-3">
             <span className="flex min-w-0 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-foreground/92">
               <span className="h-px w-4 shrink-0 bg-accent/50" />
               <span className="truncate">{siteConfig?.address}</span>
@@ -141,13 +141,13 @@ export function Footer({ siteConfig = {}, logo }: FooterProps) {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Ubicación Tello-Astudillo"
-            className="block w-full grayscale opacity-80 transition-all hover:grayscale-0 hover:opacity-100 sm:h-[220px]"
+            className="block w-full grayscale opacity-80 transition-all hover:grayscale-0 hover:opacity-100 sm:h-[220px] md:h-[240px] lg:h-[220px]"
             style={{ border: 0 }}
           />
         </div>
 
         {/* ── Bottom bar ── */}
-        <div className="mt-10 flex flex-col gap-3 border-t border-border/60 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-border/60 pt-8 sm:flex-row sm:items-center sm:justify-between md:mt-12">
           <p className="text-xs text-foreground/90">
             © {new Date().getFullYear()} Metalmecánica Tello-Astudillo Asociados Ltda. Todos los derechos reservados.
           </p>
