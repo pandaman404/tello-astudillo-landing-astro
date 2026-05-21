@@ -61,7 +61,7 @@ export function Navbar({ logo }: NavbarProps) {
           <img
             src={logo?.imageUrl}
             alt={logo?.alt ?? "Tello-Astudillo"}
-            className="h-[54px] w-auto object-contain transition-opacity group-hover:opacity-80 sm:h-[62px] lg:h-[72px]"
+            className="h-[54px] w-auto object-contain brightness-0 invert transition-opacity group-hover:opacity-80 sm:h-[62px] lg:h-[72px]"
           />
         </a>
 
